@@ -1,16 +1,70 @@
 <?php
 
 /* Database credentials from environment variables or defaults */
-define('DB_SERVER', getenv('DB_HOST') ?: 'localhost');
-define('DB_USERNAME', getenv('DB_USER') ?: 'trusqerp_medidb');
-define('DB_PASSWORD', getenv('DB_PASS') ?: 'Gravity90$');
-define('DB_NAME', getenv('DB_NAME') ?: 'trusqerp_medidb');
- 
-/* Attempt to connect to MySQL database */
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
- 
-// Check connection
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
+$db_host = getenv('DB_HOST') ?: 'localhost';
+$db_user = getenv('DB_USER') ?: 'trusqerp_medidb';
+$db_pass = getenv('DB_PASS') ?: 'Gravity90$';
+$db_name = getenv('DB_NAME') ?: 'trusqerp_medidb';
+$db_type = getenv('DB_TYPE') ?: 'mysql'; // 'mysql' or 'pgsql'
+
+if ($db_type === 'pgsql') {
+    // PostgreSQL connection
+    $conn_string = "host=$db_host dbname=$db_name user=$db_user password=$db_pass";
+    $link = pg_connect($conn_string);
+    
+    if(!$link) {
+        die("ERROR: Could not connect to PostgreSQL. " . pg_last_error());
+    }
+    
+    // Define helper functions for PostgreSQL
+    function db_query($query) {
+        global $link;
+        return pg_query($link, $query);
+    }
+    
+    function db_fetch_assoc($result) {
+        return pg_fetch_assoc($result);
+    }
+    
+    function db_num_rows($result) {
+        return pg_num_rows($result);
+    }
+    
+    function db_escape_string($string) {
+        global $link;
+        return pg_escape_string($link, $string);
+    }
+    
+} else {
+    // MySQL connection (original)
+    define('DB_SERVER', $db_host);
+    define('DB_USERNAME', $db_user);
+    define('DB_PASSWORD', $db_pass);
+    define('DB_NAME', $db_name);
+    
+    $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    
+    if($link === false){
+        die("ERROR: Could not connect to MySQL. " . mysqli_connect_error());
+    }
+    
+    // Define helper functions for MySQL
+    function db_query($query) {
+        global $link;
+        return mysqli_query($link, $query);
+    }
+    
+    function db_fetch_assoc($result) {
+        return mysqli_fetch_assoc($result);
+    }
+    
+    function db_num_rows($result) {
+        return mysqli_num_rows($result);
+    }
+    
+    function db_escape_string($string) {
+        global $link;
+        return mysqli_real_escape_string($link, $string);
+    }
 }
 ?>
