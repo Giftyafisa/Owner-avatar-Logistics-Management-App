@@ -1,11 +1,9 @@
 services:
-  - type: web_service
+  - type: web
     name: owner-avatar-logistics
-    env: php
+    runtime: docker
+    plan: free
+    region: oregon
     branch: main
-    root: /
-    buildCommand: |
-      # install admin UI deps only
-      cd admin && npm ci --prefer-offline --no-audit
-    startCommand: "php -S 0.0.0.0:$PORT index.php"
-    healthCheckPath: /
+    dockerfilePath: ./Dockerfile
+    dockerContext: ./
