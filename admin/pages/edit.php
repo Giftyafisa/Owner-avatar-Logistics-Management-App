@@ -123,9 +123,9 @@ overflow-x: auto;
 
                                     <?php 
                                     $sql= "SELECT * FROM tbl_users";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				  while($row = mysqli_fetch_assoc($result)){  
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				  while($row = db_fetch_assoc($result)){  
 				 
 				  if(isset($row['active'])  && $row['active']==1){
 					  $acst = 'Activated &nbsp;&nbsp;<i style="color:green;font-size:20px;" class="fa  fa-check" ></i>';

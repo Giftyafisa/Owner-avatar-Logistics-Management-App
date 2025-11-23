@@ -49,7 +49,7 @@ if(isset($_POST['set'])){
 
    $sql = "INSERT INTO history (pname,shipdate,saddress,sname,raddress,rname,email,status,location,pdate,pid,remark) VALUES ('$pname','$shipdate','$saddress','$sname','$raddress','$rname','$email','$status','$location','$pdate','$pid','$remark')";
    
-   if(mysqli_query($link, $sql)){
+   if(db_query($sql)){
       
 
  //send email
@@ -235,9 +235,9 @@ if($mail->send()) {
  <?php 
  
  $sql= "SELECT * FROM history WHERE pid='$pid'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				 $row = mysqli_fetch_assoc($result); 
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				 $row = db_fetch_assoc($result); 
 				  if(isset($row['pid'])){
 				      
 $pid = $row['pid'];					

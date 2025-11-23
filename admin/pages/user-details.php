@@ -31,9 +31,9 @@ else{
 
 
   $sql= "SELECT * FROM tbl_users WHERE email = '$email'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-          $row = mysqli_fetch_assoc($result);
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+          $row = db_fetch_assoc($result);
 
           $session = $row['session'];
           $fname =  $row['fname'];
@@ -72,10 +72,10 @@ else{
 	
 	
        
-    $email =$link->real_escape_string( $_POST['email']);
-    $status =$link->real_escape_string( $_POST['status']);
-    $amount =$link->real_escape_string( $_POST['amount']);
-    $description =$link->real_escape_string( $_POST['description']);
+    $email = db_escape_string( $_POST['email']);
+    $status = db_escape_string( $_POST['status']);
+    $amount = db_escape_string( $_POST['amount']);
+    $description = db_escape_string( $_POST['description']);
     $type = 'Credit';
      $com = '';
         $to="";
@@ -88,10 +88,10 @@ else{
     
     VALUES ('$token', '$type', '$amount', '$txndate', '$description', '$to', '$account','$status','$com')";
     
-    if (mysqli_query($link, $sql1)) {
+    if (db_query($sql1)) {
         
          $sql = "UPDATE tbl_users SET balance= balance + $amount  WHERE email='$email'";
-        mysqli_query($link, $sql);
+        db_query($sql);
         
        
         $msg = "Account Funded successfully!";
@@ -104,11 +104,11 @@ else{
     if(isset($_POST['fund']) &&  isset($_POST['type'])  &&  $_POST['type'] == 'Debit Fund'){
 	
 	
-      $account =$link->real_escape_string( $_POST['account']);
-      $email =$link->real_escape_string( $_POST['email']);
-      $status =$link->real_escape_string( $_POST['status']);
-      $amount =$link->real_escape_string( $_POST['amount']);
-      $description =$link->real_escape_string( $_POST['description']);
+      $account = db_escape_string( $_POST['account']);
+      $email = db_escape_string( $_POST['email']);
+      $status = db_escape_string( $_POST['status']);
+      $amount = db_escape_string( $_POST['amount']);
+      $description = db_escape_string( $_POST['description']);
       $type = 'Debit';
       $com = '';
       $txndate = date("Y/m/d");
@@ -126,10 +126,10 @@ else{
        }else{
 
 
-      if (mysqli_query($link, $sql1)) {
+      if (db_query($sql1)) {
 
         $sql = "UPDATE tbl_users SET balance= balance - $amount  WHERE email='$email'";
-        mysqli_query($link, $sql);
+        db_query($sql);
           $msg = "Account Debited successfully!";
       } else {
           $msg = "Cannot Debit Account! ";
@@ -141,12 +141,12 @@ else{
   if(isset($_POST['activate'])){
 	
 	
-    $email =$link->real_escape_string( $_POST['email']);
+    $email = db_escape_string( $_POST['email']);
         
       
     $sql1 = "UPDATE tbl_users SET active='1' WHERE email='$email'";
     
-    if (mysqli_query($link, $sql1)) {
+    if (db_query($sql1)) {
         $msg = "Transfer activated successfully!";
     } else {
         $msg = "Cannot activate transfer! ";
@@ -158,12 +158,12 @@ else{
     if(isset($_POST['deactivate'])){
 	
 	
-      $email =$link->real_escape_string( $_POST['email']);
+      $email = db_escape_string( $_POST['email']);
           
         
       $sql1 = "UPDATE tbl_users SET active='0' WHERE email='$email'";
       
-      if (mysqli_query($link, $sql1)) {
+      if (db_query($sql1)) {
           $msg = "Transfer deactivated successfully!";
       } else {
           $msg = "Cannot deactivate transfer! ";
@@ -175,12 +175,12 @@ else{
     if(isset($_POST['delete'])){
 	
 	
-      $email =$link->real_escape_string( $_POST['email']);
+      $email = db_escape_string( $_POST['email']);
           
         
       $sql1 = "DELETE FROM tbl_users  WHERE email='$email'";
       
-      if (mysqli_query($link, $sql1)) {
+      if (db_query($sql1)) {
           $msg = "Account Deleted successfully!";
              header("location:https://3d_bank/admin/pages/users.php");
           
@@ -196,14 +196,14 @@ else{
       
   if(isset($_POST['verify'])){
 	
-	 $account =$link->real_escape_string( $_POST['account']);
-      $fname =$link->real_escape_string( $_POST['fname']);
-    $email =$link->real_escape_string( $_POST['email']);
+	 $account = db_escape_string( $_POST['account']);
+      $fname = db_escape_string( $_POST['fname']);
+    $email = db_escape_string( $_POST['email']);
         
       
     $sql1 = "UPDATE tbl_users SET status='1' WHERE email='$email'";
     
-    if (mysqli_query($link, $sql1)) {
+    if (db_query($sql1)) {
         
     
         
@@ -274,12 +274,12 @@ if($mail->send()) {
     if(isset($_POST['unverify'])){
 	
 	
-      $email =$link->real_escape_string( $_POST['email']);
+      $email = db_escape_string( $_POST['email']);
           
         
       $sql1 = "UPDATE tbl_users SET status='0' WHERE email='$email'";
       
-      if (mysqli_query($link, $sql1)) {
+      if (db_query($sql1)) {
         
         
          
@@ -350,12 +350,12 @@ if($mail->send()) {
       if(isset($_POST['acone'])){
 	
 	
-        $email =$link->real_escape_string( $_POST['email']);
+        $email = db_escape_string( $_POST['email']);
             
           
         $sql1 = "UPDATE tbl_users SET acone='1', actwo='0'  WHERE email='$email'";
         
-        if (mysqli_query($link, $sql1)) {
+        if (db_query($sql1)) {
             $msg = "Account A activated and Account B Deactivated successfully!";
         } else {
             $msg = "Cannot activate Account A! ";
@@ -365,12 +365,12 @@ if($mail->send()) {
         if(isset($_POST['actwo'])){
 	
 	
-          $email =$link->real_escape_string( $_POST['email']);
+          $email = db_escape_string( $_POST['email']);
               
             
           $sql1 = "UPDATE tbl_users SET acone='0', actwo='1'  WHERE email='$email'";
           
-          if (mysqli_query($link, $sql1)) {
+          if (db_query($sql1)) {
               $msg = "Account B activated and Account A Deactivated successfully!";
           } else {
               $msg = "Cannot activate Account B! ";
@@ -390,9 +390,9 @@ if($mail->send()) {
 
 
 $sql= "SELECT * FROM tbl_users WHERE email = '$email'";
-$result = mysqli_query($link,$sql);
-if(mysqli_num_rows($result) > 0){
-  $row = mysqli_fetch_assoc($result);
+$result = db_query($sql);
+if(db_num_rows($result) > 0){
+  $row = db_fetch_assoc($result);
 
   $session = $row['session'];
   $fname =  $row['fname'];

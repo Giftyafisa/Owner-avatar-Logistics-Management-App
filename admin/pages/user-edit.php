@@ -18,9 +18,9 @@
 
 
   $sql= "SELECT * FROM tbl_users WHERE email = '$email'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-          $row = mysqli_fetch_assoc($result);
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+          $row = db_fetch_assoc($result);
 
           $session = $row['session'];
           $fname =  $row['fname'];
@@ -53,25 +53,25 @@
     if(isset($_POST['edit'])){
 	
 	
-      $emails =$link->real_escape_string( $_POST['email']);
-       $fname =$link->real_escape_string( $_POST['fname']);
-      $lname =$link->real_escape_string( $_POST['lname']);
-      $acctno =$link->real_escape_string( $_POST['acctno']);
-      $phone =$link->real_escape_string( $_POST['phone']);
-      $gender =$link->real_escape_string( $_POST['gender']);
-      $pin =$link->real_escape_string( $_POST['pin']);
-      $utype =$link->real_escape_string( $_POST['utype']);
-      $imf =$link->real_escape_string( $_POST['imf']);
-      $ipn =$link->real_escape_string( $_POST['ipn']);
-      $cot =$link->real_escape_string( $_POST['cot']);
-      $pwd =$link->real_escape_string( $_POST['pwd']);
+      $emails = db_escape_string( $_POST['email']);
+       $fname = db_escape_string( $_POST['fname']);
+      $lname = db_escape_string( $_POST['lname']);
+      $acctno = db_escape_string( $_POST['acctno']);
+      $phone = db_escape_string( $_POST['phone']);
+      $gender = db_escape_string( $_POST['gender']);
+      $pin = db_escape_string( $_POST['pin']);
+      $utype = db_escape_string( $_POST['utype']);
+      $imf = db_escape_string( $_POST['imf']);
+      $ipn = db_escape_string( $_POST['ipn']);
+      $cot = db_escape_string( $_POST['cot']);
+      $pwd = db_escape_string( $_POST['pwd']);
 
       
           
         
       $sql1 = "UPDATE tbl_users SET fname='$fname', lname='$lname', email='$emails', phone='$phone', gender='$gender', utype='$utype', acctno='$acctno', pin='$pin', imf='$imf', ipn='$ipn', cot='$cot', pwd='$pwd'   WHERE email='$emails'";
       
-      if (mysqli_query($link, $sql1)) {
+      if (db_query($sql1)) {
           $msg = "Account Details Edited Successfully!";
       } else {
           $msg = "Cannot Edit Account! ";
@@ -88,9 +88,9 @@
 
 
 $sql= "SELECT * FROM tbl_users WHERE email = '$email'";
-$result = mysqli_query($link,$sql);
-if(mysqli_num_rows($result) > 0){
-  $row = mysqli_fetch_assoc($result);
+$result = db_query($sql);
+if(db_num_rows($result) > 0){
+  $row = db_fetch_assoc($result);
 
   $session = $row['session'];
   $fname =  $row['fname'];

@@ -50,8 +50,8 @@ h3 {
 			
 		 
  $sql= "SELECT * FROM track WHERE pid = $tid";
-	$result = mysqli_query($link,$sql);
-$row = mysqli_fetch_assoc($result);
+	$result = db_query($sql);
+$row = db_fetch_assoc($result);
 				 $pid = $row['pid'];
 				  
 				  ?>

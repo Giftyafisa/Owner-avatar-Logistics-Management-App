@@ -153,9 +153,9 @@ else{
 
                                     <?php 
                                     $sql= "SELECT * FROM track 	ORDER BY id DESC LIMIT 10";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				  while($row = mysqli_fetch_assoc($result)){  
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				  while($row = db_fetch_assoc($result)){  
 				  if(isset($row['pid']) ){
 	 $ids = $row['id'];									
  $pname = $row['pname'];

@@ -17,9 +17,9 @@ if(isset($_POST['submit'])){
 
 
 		$sql= "SELECT * FROM track WHERE pid = '$tid'";
-		$result = mysqli_query($link,$sql);
-		if(mysqli_num_rows($result) > 0){
-		  $row = mysqli_fetch_assoc($result);
+		$result = db_query($sql);
+		if(db_num_rows($result) > 0){
+		  $row = db_fetch_assoc($result);
 
 		  $pid = $row['pid'];
 		  if(isset($row['pid'])){

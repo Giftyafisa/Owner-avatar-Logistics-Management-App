@@ -58,7 +58,7 @@ if ($uploadOk == 0) {
 	 
 	 $sql = "UPDATE tbl_users SET pics='$fileToUpload' WHERE email='$email'";
 
-	  mysqli_query($link, $sql) or die(mysqli_error($link));
+	  db_query($sql);
 	 
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         $msg= "User Image  ". basename( $_FILES["fileToUpload"]["name"]). " has been updated !";

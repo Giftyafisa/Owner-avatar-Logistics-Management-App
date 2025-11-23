@@ -22,7 +22,7 @@ if(isset($_POST['confirm'])){
     
     $sql = "UPDATE  track SET status = 'confirm' WHERE pid = '$pi'";
     
-       if(mysqli_query($link, $sql)){
+       if(db_query($sql)){
            
            $msg = "package corfirmed";
            
@@ -45,7 +45,7 @@ if(isset($_POST['process'])){
     
     $sql = "UPDATE  track SET status = 'process' WHERE pid = '$pi'";
     
-       if(mysqli_query($link, $sql)){
+       if(db_query($sql)){
            
            $msg = "package processing";
            
@@ -68,7 +68,7 @@ if(isset($_POST['quality'])){
     
     $sql = "UPDATE  track SET status = 'quality' WHERE pid = '$pi'";
     
-       if(mysqli_query($link, $sql)){
+       if(db_query($sql)){
            
            $msg = "package checked";
            
@@ -90,7 +90,7 @@ if(isset($_POST['dispatch'])){
     
     $sql = "UPDATE  track SET status = 'dispatch' WHERE pid = '$pi'";
     
-       if(mysqli_query($link, $sql)){
+       if(db_query($sql)){
            
            $msg = "package Dispatched";
            
@@ -113,7 +113,7 @@ if(isset($_POST['deliver'])){
     
     $sql = "UPDATE  track SET status = 'deliver' WHERE pid = '$pi'";
     
-       if(mysqli_query($link, $sql)){
+       if(db_query($sql)){
            
            $msg = "package delivered";
            
@@ -167,9 +167,9 @@ $pids = $_GET['pid'];
 	<?php 
 			
 			$sql= "SELECT * FROM track WHERE pid = '$pids'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				$row = mysqli_fetch_assoc($result); 
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				$row = db_fetch_assoc($result); 
               
 				$row['status'];
 				

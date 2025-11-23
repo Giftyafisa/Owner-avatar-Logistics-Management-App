@@ -53,7 +53,7 @@ if(isset($_POST['set'])){
 
    $sql = "UPDATE history SET  pname = '$pname',shipdate = '$shipdate',saddress = '$saddress',sname = '$sname' ,raddress = '$raddress',rname = '$rname',email = '$email', status = '$status',location = '$location', pdate = '$pdate' ,pid = '$pid' WHERE id = '$ids'";
    
-   if(mysqli_query($link, $sql)){
+   if(db_query($sql)){
       
 
  //send email
@@ -239,9 +239,9 @@ if($mail->send()) {
  <?php 
  
  $sql= "SELECT * FROM history WHERE id='$ids'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				 $row = mysqli_fetch_assoc($result); 
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				 $row = db_fetch_assoc($result); 
 				  if(isset($row['id'])){
 $id = $row['id'];				      
 $pid = $row['pid'];					

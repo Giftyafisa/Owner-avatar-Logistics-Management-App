@@ -38,8 +38,8 @@ if(isset($_POST['set'])){
    $target = "logo/".basename($logo);
    
    $sql = "SELECT email FROM settings WHERE id = '$id'";
-$result = mysqli_query($link, $sql);
-if (mysqli_num_rows($result) > 0) {
+$result = db_query($sql);
+if (db_num_rows($result) > 0) {
     $msg = 'Settings already added.';
 
 }else{
@@ -47,7 +47,7 @@ if (mysqli_num_rows($result) > 0) {
 
    $sql = "INSERT INTO settings (sname, apipr, apipu, currency, branch, bname, baddress, email, phone, title, logo) VALUES ('$sname','$apipr','$apipu','$currency','$branch','$bname','$baddress','$email','$phone','$title','$logo')";
    
-   if(mysqli_query($link, $sql)){
+   if(db_query($sql)){
 
     move_uploaded_file($_FILES['logo']['tmp_name'], $target);
 			
@@ -83,7 +83,7 @@ if(isset($_POST['uset'])){
  
     $sql = "UPDATE settings SET  sname='$sname', apipr='$apipr', apipu='$apipu', currency='$currency', branch='$branch', bname='$bname', baddress='$baddress', email='$email', phone='$phone', title='$title', logo='$logo' WHERE id = '$id' ";
     
-    if(mysqli_query($link, $sql)){
+    if(db_query($sql)){
  
      move_uploaded_file($_FILES['logo']['tmp_name'], $target);
        

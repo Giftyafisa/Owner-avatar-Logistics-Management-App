@@ -16,26 +16,26 @@ if(isset($_POST['submit'])){
 
  
 
-$fname = $link->real_escape_string($_POST['firstname']);
-$lname = $link->real_escape_string($_POST['lastname']);
-$pwd = $link->real_escape_string($_POST['password']);
-$email = $link->real_escape_string($_POST['email']);
-$phone = $link->real_escape_string($_POST['phone']);
-$bdate =$link->real_escape_string( $_POST['bdate']);
+$fname = db_escape_string($_POST['firstname']);
+$lname = db_escape_string($_POST['lastname']);
+$pwd = db_escape_string($_POST['password']);
+$email = db_escape_string($_POST['email']);
+$phone = db_escape_string($_POST['phone']);
+$bdate = db_escape_string($_POST['bdate']);
 
-$gender = $link->real_escape_string($_POST['gender']);
-$address = $link->real_escape_string( $_POST['address']);
-$city = $link->real_escape_string($_POST['city']);
-$country = $link->real_escape_string($_POST['country']);
-$state = $link->real_escape_string($_POST['state']);
-$zipcode = $link->real_escape_string($_POST['zipcode']);
-$notification = $link->real_escape_string((int) $_POST['notification']);
-$nbalance = $link->real_escape_string($_POST['nbalance']);
-$inbalance = $link->real_escape_string($_POST['inbalance']);
-$bname = $link->real_escape_string($_POST['bname']);
+$gender = db_escape_string($_POST['gender']);
+$address = db_escape_string($_POST['address']);
+$city = db_escape_string($_POST['city']);
+$country = db_escape_string($_POST['country']);
+$state = db_escape_string($_POST['state']);
+$zipcode = db_escape_string($_POST['zipcode']);
+$notification = db_escape_string((int) $_POST['notification']);
+$nbalance = db_escape_string($_POST['nbalance']);
+$inbalance = db_escape_string($_POST['inbalance']);
+$bname = db_escape_string($_POST['bname']);
 
-$utype = $link->real_escape_string($_POST['utype']);
-$pin = $link->real_escape_string( $_POST['pin']);
+$utype = db_escape_string($_POST['utype']);
+$pin = db_escape_string($_POST['pin']);
 $image = $_FILES['image']['name'];
 $target = "uploads/".basename($image);
 
@@ -73,8 +73,8 @@ $ipn = substr($ipn,0, 4);
 
 
 $sql = "SELECT email FROM tbl_users WHERE email = '$email'";
-$result = mysqli_query($link, $sql);
-if (mysqli_num_rows($result) > 0) {
+$result = db_query($sql);
+if (db_num_rows($result) > 0) {
     $msg = 'Email already exist, please try another email.';
 
 }else{
@@ -83,7 +83,7 @@ $sql1 = "INSERT INTO tbl_users (fname, lname, pwd, email, phone, gender, is_mobi
 
         VALUES ('$fname', '$lname', '$pwd', '$email', '$phone', '$gender', '$is_mobile','$mobile_hash', '$utype', '$image', '$bdate','$account','$active','$status','$pin','$session','$balance','$address','$city','$state','$zipcode','$notification','$nbalance','$inbalance','$bname','$country','$ipn','$imf','$cot')";
 
-         if(mysqli_query($link, $sql1)){
+         if(db_query($sql1)){
 
 move_uploaded_file($_FILES['image']['tmp_name'], $target);
               

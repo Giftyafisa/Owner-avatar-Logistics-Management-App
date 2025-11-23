@@ -61,20 +61,20 @@ if(isset($_POST['set'])){
 
    $sql = "INSERT INTO track (pname,shipdate,saddress,sname,raddress,rname,email,status,location,pdate,pid,edd,weight,servicetype,pdesc,qty,image,remark) VALUES ('$pname','$shipdate','$saddress','$sname','$raddress','$rname','$email','$status','$location','$pdate','$pid','$edd','$weight','$servicetype','$pdesc','$qty','$image','$remark')";
    
-   if(mysqli_query($link, $sql)){
+   if(db_query($sql)){
        
        move_uploaded_file($_FILES['image']['tmp_name'], $target);
       
 
 $sql1 = "INSERT INTO history (pname,shipdate,saddress,sname,raddress,rname,email,status,location,pdate,pid,edd,weight,servicetype,pdesc,qty,image,remark) VALUES ('$pname','$shipdate','$saddress','$sname','$raddress','$rname','$email','$status','$location','$pdate','$pid','$edd','$weight','$servicetype','$pdesc','$qty','$image','$remark')";
 
-mysqli_query($link, $sql1);
+db_query($sql1);
 
 
 
 $sql2 = " INSERT INTO ocontrol (pid) VALUES ('$pid') ";
 
-mysqli_query($link, $sql2);
+db_query($sql2);
 
  //send email
 
@@ -243,7 +243,7 @@ if(isset($_POST['uset'])){
  
     $sql = "UPDATE settings SET  pname='$pname', shipdate='$shipdate', saddress='$saddress', sname='$sname', raddress='$raddress', rname='$rname', email='$email', status ='$status ', location='$location',pdate='$pdate', pid='$pid' WHERE id = '$id' ";
     
-    if(mysqli_query($link, $sql)){
+    if(db_query($sql)){
  
      move_uploaded_file($_FILES['logo']['tmp_name'], $target);
        

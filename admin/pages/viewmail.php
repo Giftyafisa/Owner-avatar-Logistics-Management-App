@@ -26,7 +26,7 @@ if(isset($_POST['delete'])){
 	
 $sql = "DELETE FROM message WHERE msgid='$msgid'";
 
-if (mysqli_query($link, $sql)) {
+if (db_query($sql)) {
     $msg = "Message deleted successfully!";
 } else {
     $msg = "Message not deleted! ";
@@ -40,7 +40,7 @@ if(isset($_POST['read'])){
 	
 $sql = "UPDATE messageadmin SET status = '1'  WHERE msgid='$msgid'";
 
-if (mysqli_query($link, $sql)) {
+if (db_query($sql)) {
     $msg = "Message marked as read!";
 } else {
     $msg = "Message not marked  ";
@@ -127,9 +127,9 @@ include 'header.php';
 
 					<tbody>
 					<?php $sql= "SELECT * FROM messageadmin";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				  while($row = mysqli_fetch_assoc($result)){  
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				  while($row = db_fetch_assoc($result)){  
 				  if(isset($row['status'])  && $row['status']==1){
 					  $msg = 'Message Read &nbsp;&nbsp;<i style="background-color:green;color:#fff; font-size:20px;" class="fa  fa-check" ></i>';
 					  

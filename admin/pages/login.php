@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
     
 		
-	$email = $link->real_escape_string($_POST['email']);
-	$password = $link->real_escape_string($_POST['password']);
+	$email = db_escape_string($_POST['email']);
+	$password = db_escape_string($_POST['password']);
 	
 	
 	if($email == "" || $password == ""){
@@ -44,9 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					
 	if($sql = "SELECT * FROM admin WHERE email='$email'  AND password='$password'"){
 
-                 $result = $link->query($sql);
-                 if(mysqli_num_rows($result) > 0){
-                     $row = mysqli_fetch_array($result);
+                 $result = db_query($sql);
+                 if(db_num_rows($result) > 0){
+                     $row = db_fetch_assoc($result);
 
 	             $_SESSION['email']=$_POST['email'];
 	               $_SESSION['password']=$row['password'];

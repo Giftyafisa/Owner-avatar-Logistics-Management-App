@@ -31,10 +31,10 @@ else{
 if(isset($_POST['submit'])){
 
 
-$opassword =$link->real_escape_string($_POST['opassword']);
-$cpassword =$link->real_escape_string($_POST['cpassword']);
-$password =$link->real_escape_string($_POST['password']);
-$email =$link->real_escape_string($_POST['email']);
+$opassword = db_escape_string($_POST['opassword']);
+$cpassword = db_escape_string($_POST['cpassword']);
+$password = db_escape_string($_POST['password']);
+$email = db_escape_string($_POST['email']);
 
 
 if ( $opassword == $cpassword){
@@ -43,7 +43,7 @@ if ( $opassword == $cpassword){
 $sql = "UPDATE admin SET password='$password' WHERE email='$email'";
 
     
-  mysqli_query($link, $sql);
+  db_query($sql);
 
   
 

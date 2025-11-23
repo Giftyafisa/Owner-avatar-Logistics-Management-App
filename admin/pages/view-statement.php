@@ -19,9 +19,9 @@
 
 
  $sql= "SELECT * FROM tbl_transaction WHERE tx_no = '$refno'";
- $result = mysqli_query($link,$sql);
- if(mysqli_num_rows($result) > 0){
-   $row = mysqli_fetch_assoc($result);
+ $result = db_query($sql);
+ if(db_num_rows($result) > 0){
+   $row = db_fetch_assoc($result);
  
  
    $type = $row['tx_type'];
@@ -47,20 +47,20 @@
     if(isset($_POST['edit'])){
 	
 	
-      $type =$link->real_escape_string( $_POST['type']);
-       $amount =$link->real_escape_string( $_POST['amount']);
-      $account =$link->real_escape_string( $_POST['account']);
-      $description =$link->real_escape_string( $_POST['description']);
-      $to_accno =$link->real_escape_string( $_POST['to_accno']);
-      $status =$link->real_escape_string( $_POST['status']);
-      $date =$link->real_escape_string( $_POST['date']);
+      $type = db_escape_string($_POST['type']);
+       $amount = db_escape_string($_POST['amount']);
+      $account = db_escape_string($_POST['account']);
+      $description = db_escape_string($_POST['description']);
+      $to_accno = db_escape_string($_POST['to_accno']);
+      $status = db_escape_string($_POST['status']);
+      $date = db_escape_string($_POST['date']);
    
       
           
         
       $sql1 = "UPDATE tbl_transaction SET tx_type='$type', amount='$amount', date='$date',description='$description',  to_accno='$to_accno', account='$account',   status='$status'  WHERE tx_no='$ref'";
       
-      if (mysqli_query($link, $sql1)) {
+      if (db_query($sql1)) {
           $msg = "History Details Edited Successfully!";
       } else {
           $msg = "Cannot Edit History Details! ";
@@ -77,9 +77,9 @@
 
 
 $sql= "SELECT * FROM tbl_transaction WHERE tx_no = '$refno'";
-$result = mysqli_query($link,$sql);
-if(mysqli_num_rows($result) > 0){
-  $row = mysqli_fetch_assoc($result);
+$result = db_query($sql);
+if(db_num_rows($result) > 0){
+  $row = db_fetch_assoc($result);
 
 
   $type = $row['tx_type'];

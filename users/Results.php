@@ -329,9 +329,9 @@ $tid = $_GET['track'];
                                 	<?php 
 			
 			$sql= "SELECT * FROM track WHERE pid = '$tid'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				$row = mysqli_fetch_assoc($result); 
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				$row = db_fetch_assoc($result); 
               
 				$row['email'];
 				if(isset($row['location'])){
@@ -369,9 +369,9 @@ $tid = $_GET['track'];
 	<?php 
 			
 			$sql= "SELECT * FROM track WHERE pid = '$tid'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				$row = mysqli_fetch_assoc($result); 
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				$row = db_fetch_assoc($result); 
               
 				$row['status'];
 				
@@ -663,9 +663,9 @@ $tid = $_GET['track'];
             <?php 
 			
 			$sql= "SELECT * FROM track WHERE pid = '$tid'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				$row = mysqli_fetch_assoc($result); 
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				$row = db_fetch_assoc($result); 
               
 				$row['email'];
 				if(isset($row['location'])){
@@ -765,9 +765,9 @@ $tid = $_GET['track'];
                                 	<?php 
 						
 						$sql= "SELECT * FROM history WHERE pid = '$tid'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				  while($row = mysqli_fetch_assoc($result)){  
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				  while($row = db_fetch_assoc($result)){  
 				  
 				  
 				  
@@ -806,9 +806,9 @@ $tid = $_GET['track'];
             <?php 
 			
 			$sql= "SELECT * FROM track WHERE pid = '$tid'";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				$row = mysqli_fetch_assoc($result); 
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				$row = db_fetch_assoc($result); 
               
 				$row['image'];
 				if(isset($row['image'])){

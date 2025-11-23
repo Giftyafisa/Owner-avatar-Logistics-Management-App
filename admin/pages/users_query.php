@@ -4,12 +4,10 @@
 
  
 $sqlu= "SELECT * FROM track  ";
-			  $resultu = mysqli_query($link,$sqlu);
-			  if(mysqli_num_rows($resultu) > 0){
-				
-              $totalu= mysqli_num_rows($resultu);
-				
-			  }else{
+			  $resultu = db_query($sqlu);
+			  if(db_num_rows($resultu) > 0){
+				  
+              $totalu= db_num_rows($resultu);			  }else{
 				$totalu = 0  ;
 			  }
 			  

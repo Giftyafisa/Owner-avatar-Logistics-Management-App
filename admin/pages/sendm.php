@@ -37,7 +37,7 @@ if(isset($_POST['mssg'])){
 
 
 	 $sql = "INSERT INTO adminmessage (email, message, title, msgid) VALUES ('$email','$message','$title','$msgid')";
-        if(mysqli_query($link, $sql)){
+        if(db_query($sql)){
 			
 			$msg = "Message sent!";
 		}else{
@@ -54,7 +54,7 @@ if(isset($_POST['delete'])){
   
 $sql = "DELETE FROM messageadmin WHERE msgid='$msgid'";
 
-if (mysqli_query($link, $sql)) {
+if (db_query($sql)) {
   $msg = "Message deleted successfully!";
 } else {
   $msg = "Message not deleted! ";
@@ -70,7 +70,7 @@ if(isset($_POST['send'])){
   
 $sql = "UPDATE  messageadmin SET reply='$reply',astatus='1' WHERE msgid='$msgid'";
 
-if (mysqli_query($link, $sql)) {
+if (db_query($sql)) {
   $msg = "Message replied successfully!";
 } else {
   $msg = "Message not replied! ";
@@ -178,9 +178,9 @@ include "header.php";
 
 					<tbody>
 					<?php $sql= "SELECT * FROM messageadmin ";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				  while($row = mysqli_fetch_assoc($result)){  
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				  while($row = db_fetch_assoc($result)){  
 				  if(isset($row['astatus'])  && $row['astatus']==1){
 					  $msg = 'Message replied &nbsp;&nbsp;<i style="background-color:green;color:#fff; font-size:20px;" class="fa  fa-check" ></i>';
 					  

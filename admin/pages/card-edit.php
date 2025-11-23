@@ -61,7 +61,7 @@ if(isset($_POST['uset'])){
  
     $sql = "UPDATE track SET  pname='$pname', shipdate='$shipdate', saddress='$saddress', sname='$sname', raddress='$raddress', rname='$rname', email='$email', status ='$status', location='$location',pdate='$pdate', pid='$pid',edd='$edd',weight='$weight',servicetype='$servicetype',pdesc='$pdesc',qty='$qty', remark='$remark',  image= '$image'  WHERE id = '$ids' ";
     
-   if(mysqli_query($link, $sql)){
+   if(db_query($sql)){
       
   move_uploaded_file($_FILES['image']['tmp_name'], $target);
  //send email
@@ -248,9 +248,9 @@ if($mail->send()) {
  <?php 
  
  $sql= "SELECT * FROM track WHERE id = $ids";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				  while($row = mysqli_fetch_assoc($result)){  
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				  while($row = db_fetch_assoc($result)){  
 				  if(isset($row['pid'])){
 				      
 $pid = $row['pid'];					

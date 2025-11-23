@@ -30,7 +30,7 @@ else{
         
       $sql1 = "DELETE FROM tbl_users  WHERE id='$id'";
       
-      if (mysqli_query($link, $sql1)) {
+      if (db_query($sql1)) {
           $msg = "Account Deleted Successfully!";
           
          
@@ -151,9 +151,9 @@ overflow-x: auto;
 
                                     <?php 
                                     $sql= "SELECT * FROM tbl_users";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-				  while($row = mysqli_fetch_assoc($result)){  
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+				  while($row = db_fetch_assoc($result)){  
 				  if(isset($row['session'])  && $row['session']==1){
 					  $msg = "online";
 					  

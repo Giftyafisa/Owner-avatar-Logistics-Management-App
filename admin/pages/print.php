@@ -169,8 +169,8 @@ overflow-x: auto;
  
  
  $sql= "SELECT * FROM track WHERE id = $ids";
-	$result = mysqli_query($link,$sql);
-$row = mysqli_fetch_assoc($result);
+	$result = db_query($sql);
+$row = db_fetch_assoc($result);
 				 $pid = $row['pid'];	 
 			  
 				  if(isset($row['pid'])){
