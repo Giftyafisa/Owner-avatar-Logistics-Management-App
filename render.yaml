@@ -1,8 +1,11 @@
 services:
-  - type: web
+  - type: web_service
     name: owner-avatar-logistics
     env: php
     branch: main
-    buildCommand: cd admin && npm install
+    root: /
+    buildCommand: |
+      # install admin UI deps only
+      cd admin && npm ci --prefer-offline --no-audit
     startCommand: "php -S 0.0.0.0:$PORT index.php"
     healthCheckPath: /
