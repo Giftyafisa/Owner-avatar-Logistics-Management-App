@@ -23,10 +23,12 @@ if ($db_type === 'pgsql') {
     }
     
     function db_fetch_assoc($result) {
+        if (!$result) return false;
         return pg_fetch_assoc($result);
     }
     
     function db_num_rows($result) {
+        if (!$result) return 0;
         return pg_num_rows($result);
     }
     
