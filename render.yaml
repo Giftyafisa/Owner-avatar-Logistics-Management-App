@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: owner-avatar-logistics
+    env: php
+    branch: main
+    buildCommand: cd admin && npm install
+    startCommand: "php -S 0.0.0.0:$PORT index.php"
+    healthCheckPath: /
