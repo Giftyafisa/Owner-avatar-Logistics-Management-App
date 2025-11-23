@@ -1,9 +1,9 @@
-
 <?php
 session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 
+$msg = "";
 
 if(isset($_SESSION['uid'])){
  
@@ -13,8 +13,6 @@ if(isset($_SESSION['uid'])){
   include '../../config/config.php';
   include 'header.php';
 
-
-  $msg = "";
 
 }
 else{
