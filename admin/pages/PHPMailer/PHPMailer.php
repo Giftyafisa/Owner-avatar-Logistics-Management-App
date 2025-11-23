@@ -3628,12 +3628,17 @@ class PHPMailer
             //Is it a valid IPv4 address?
             return (bool) filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
         }
-        if (filter_var('http://' . $host, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
-            //Is it a syntactically valid hostname?
-            return true;
+        // FILTER_FLAG_HOST_REQUIRED was removed in PHP 8.1+
+        // Use FILTER_VALIDATE_DOMAIN instead for PHP 8.2 compatibility
+        if (defined('FILTER_VALIDATE_DOMAIN')) {
+            return (bool) filter_var($host, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME);
         }
-
-        return false;
+        // Fallback for older PHP versions
+        if (defined('FILTER_FLAG_HOST_REQUIRED')) {
+            return (bool) filter_var('http://' . $host, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED);
+        }
+        // Simple hostname validation as final fallback
+        return (bool) preg_match('/^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)*$/', $host);
     }
 
     /**
