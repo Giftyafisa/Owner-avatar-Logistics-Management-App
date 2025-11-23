@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   <!-- CSS Libraries -->
-  <link rel="stylesheet" href="../node_modules/jqvmap/dist/jqvmap.min.css">
-  <link rel="stylesheet" href="../node_modules/weathericons/css/weather-icons.min.css">
-  <link rel="stylesheet" href="../node_modules/weathericons/css/weather-icons-wind.min.css">
-  <link rel="stylesheet" href="../node_modules/summernote/dist/summernote-bs4.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons-wind.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="../assets/css/style.css">

@@ -451,7 +451,7 @@
 
   <!-- JS Libraies -->
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
-  <script src="../node_modules/gmaps/gmaps.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js"></script>
 
   <!-- Template JS File -->
   <script src="../assets/js/scripts.js"></script>
