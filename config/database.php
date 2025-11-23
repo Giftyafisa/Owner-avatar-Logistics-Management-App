@@ -1,11 +1,10 @@
 <?php
 
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'trusqerp_medidb');
-define('DB_PASSWORD', 'Gravity90$');
-define('DB_NAME', 'trusqerp_medidb');
+/* Database credentials from environment variables or defaults */
+define('DB_SERVER', getenv('DB_HOST') ?: 'localhost');
+define('DB_USERNAME', getenv('DB_USER') ?: 'trusqerp_medidb');
+define('DB_PASSWORD', getenv('DB_PASS') ?: 'Gravity90$');
+define('DB_NAME', getenv('DB_NAME') ?: 'trusqerp_medidb');
  
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
