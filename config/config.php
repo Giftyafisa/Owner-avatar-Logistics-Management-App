@@ -1,9 +1,9 @@
 <?php
 
 $sql= "SELECT * FROM settings ";
-			  $result = mysqli_query($link,$sql);
-			  if(mysqli_num_rows($result) > 0){
-                  $row = mysqli_fetch_assoc($result);
+			  $result = db_query($sql);
+			  if(db_num_rows($result) > 0){
+                  $row = db_fetch_assoc($result);
                   $currency = $row['currency'];
                   $name = $row['bname'];
                   $logo = $row['logo'];
