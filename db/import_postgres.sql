@@ -65,7 +65,7 @@ CREATE TABLE settings (
 
 -- Dumping data for table settings
 INSERT INTO settings (id, sname, apipr, apipu, currency, branch, bname, baddress, email, phone, title, logo) VALUES
-(2, '', '', '', '$', '', 'Fright Cargo', '', 'support@scriptsdemo.website', '', 'Welcome to Fright Cargo', '');
+(2, '', '', '', '$', '', 'McDan Logistics Ltd', '', 'support@mcdanlogistics.com', '+44 (74) 4144-3940', 'Welcome to McDan Logistics Ltd', '');
 
 -- Table structure for table track
 CREATE TABLE track (

@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Mediterranean Shippings</title>
+    <title>McDan Logistics Ltd</title>
 
     <!-- owl carousel css -->
     <link rel="stylesheet" href="css/owl.carousel.css"/>
@@ -267,7 +267,7 @@ function googleTranslateElementInit() {
 
                             <div class="post_content">
                                 <p style="text-align: justify;">
-                                Mediterranean Shippings Company is an airfreight forwarding specialists offering a comprehensive range of international air cargo solutions with unbeatable levels of customer service. Our industry-focused approach is the key to ensuring the safe, speedy and cost-effective transit of your cargo.
+                                McDan Logistics Ltd is an airfreight forwarding specialists offering a comprehensive range of international air cargo solutions with unbeatable levels of customer service. Our industry-focused approach is the key to ensuring the safe, speedy and cost-effective transit of your cargo.
                                 </p>
 
                                <p style="text-align: justify;">We handle air cargo spanning not only key international airfreight routes but also offer individual transportation solutions to the more remote parts of the world. All airfreight shipments are planned, controlled and monitored door-to-door within our network, giving you the real-time updates all through till final delivery. Our airfreight solutions are designed to meet your challenges in today dynamic environment.</p>
@@ -309,7 +309,7 @@ function googleTranslateElementInit() {
                                 </a>
                             </div>
                             <div class="footer_about_us">
-                                <p>Over the years, Mediterranean Shippings has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
+                                <p>Over the years, McDan Logistics Ltd has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
                             </div>
                             
                         </div>
@@ -340,7 +340,7 @@ function googleTranslateElementInit() {
                             </div>
                             <div class="footer_address">
                                 <ul>
-                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">Mediterranean Shippings, UK.</div></li>
+                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">McDan Logistics Ltd, UK.</div></li>
                                     <li>
                                         <span class="fa fa-phone"></span>
                                         <div class="number address_right">
@@ -351,7 +351,7 @@ function googleTranslateElementInit() {
                                     <li>
                                         <span class="fa fa-envelope-o"></span>
                                         <div class="address_right">
-                                            <a href="mailto:support@Mediterraneanshippings.com">support@mediterraneanshippings.com</a>
+                                            <a href="mailto:support@mcdanlogistics.com">support@mcdanlogistics.com</a>
                                             <a href="#">mediterraneanshippings.com</a>
                                         </div>
                                     </li>
@@ -370,14 +370,14 @@ function googleTranslateElementInit() {
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> fast and reliable</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> fast and reliable</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> the best logistics</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> the best logistics</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
@@ -393,7 +393,7 @@ function googleTranslateElementInit() {
             <div class="container">
                 <div class="col-md-6 xs_fullwidth col-xs-6">
                     <div class="footer_text_wrapper">
-                        <p class="footer_text">Copyright © Mediterranean Shippings. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">Mediterranean Shippings</a></p>
+                        <p class="footer_text">Copyright © McDan Logistics Ltd. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">McDan Logistics Ltd</a></p>
                     </div>
                 </div>
                 <div class="col-md-6 xs_fullwidth col-xs-6">

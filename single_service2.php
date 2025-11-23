@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Mediterranean Shippings</title>
+    <title>McDan Logistics Ltd</title>
 
     <!-- owl carousel css -->
     <link rel="stylesheet" href="css/owl.carousel.css"/>
@@ -269,7 +269,7 @@ function googleTranslateElementInit() {
 
                             <div class="post_content">
                                 <p style="text-align: justify;">
-                                    Unique shipments demand specific solutions especially for large projects that require the coordinated movement of oversized, overweight and high-value cargo. Be it oil and gas, energy, mining, manufacturing or aerospace or any other industry, Mediterranean Shippings Company provides professional over-dimensional transportation services. Armed with intuitive understanding and unique knowledge of the logistics landscape and its regulatory complexities, our Project Cargo team deftly manages shipments of any size to/from any continent.
+                                    Unique shipments demand specific solutions especially for large projects that require the coordinated movement of oversized, overweight and high-value cargo. Be it oil and gas, energy, mining, manufacturing or aerospace or any other industry, McDan Logistics Ltd provides professional over-dimensional transportation services. Armed with intuitive understanding and unique knowledge of the logistics landscape and its regulatory complexities, our Project Cargo team deftly manages shipments of any size to/from any continent.
                                 </p>
 
                                 <!--<p style="text-align: justify;">We know how important it is for your parcels
@@ -278,7 +278,7 @@ function googleTranslateElementInit() {
 								<p style="text-align: justify;">That is why we have developed a complete
 								range of solutions tailored to your international logistics and shipping req
 								uirements. Whether it’s handling a single document or a 500-kilogram freight
-								consignment, Mediterranean Shippings has the international freight solution for your nee
+								consignment, McDan Logistics Ltd has the international freight solution for your nee
 								ds. We also provide flexible rates for freight forwarding to our trusted pa
 								rtners in areas beyond our reach. With the launch of our new office in Houston,
 								you can now send items to and from the United Stateds with ease. Simply let us on the d
@@ -313,7 +313,7 @@ function googleTranslateElementInit() {
                                 </a>
                             </div>
                             <div class="footer_about_us">
-                                <p>Over the years, Mediterranean Shippings has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
+                                <p>Over the years, McDan Logistics Ltd has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
                             </div>
                             
                         </div>
@@ -344,7 +344,7 @@ function googleTranslateElementInit() {
                             </div>
                             <div class="footer_address">
                                 <ul>
-                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">Mediterranean Shippings, UK.</div></li>
+                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">McDan Logistics Ltd, UK.</div></li>
                                     <li>
                                         <span class="fa fa-phone"></span>
                                         <div class="number address_right">
@@ -355,7 +355,7 @@ function googleTranslateElementInit() {
                                     <li>
                                         <span class="fa fa-envelope-o"></span>
                                         <div class="address_right">
-                                            <a href="mailto:support@Mediterraneanshippings.com">support@mediterraneanshippings.com</a>
+                                            <a href="mailto:support@mcdanlogistics.com">support@mcdanlogistics.com</a>
                                             <a href="#">mediterraneanshippings.com</a>
                                         </div>
                                     </li>
@@ -374,14 +374,14 @@ function googleTranslateElementInit() {
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> fast and reliable</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> fast and reliable</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> the best logistics</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> the best logistics</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
@@ -397,7 +397,7 @@ function googleTranslateElementInit() {
             <div class="container">
                 <div class="col-md-6 xs_fullwidth col-xs-6">
                     <div class="footer_text_wrapper">
-                        <p class="footer_text">Copyright © Mediterranean Shippings. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">Mediterranean Shippings</a></p>
+                        <p class="footer_text">Copyright © McDan Logistics Ltd. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">McDan Logistics Ltd</a></p>
                     </div>
                 </div>
                 <div class="col-md-6 xs_fullwidth col-xs-6">

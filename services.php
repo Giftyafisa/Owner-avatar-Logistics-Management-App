@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Mediterranean Shippings</title>
+    <title>McDan Logistics Ltd</title>
 
     <!-- owl carousel css -->
     <link rel="stylesheet" href="css/owl.carousel.css"/>
@@ -259,7 +259,7 @@ function googleTranslateElementInit() {
                                 <a href="single_service.php"><h3>ground shipping</h3></a>
                             </div>
                             <div class="service_text">
-                                <p style="text-align: justify;">Mediterranean Shippings Transport offers an efficient integrated transport system with
+                                <p style="text-align: justify;">McDan Logistics Ltd Transport offers an efficient integrated transport system with
 								multiple types of trucks available to support your trucking and distribution needs. </p>
                             </div>
                             <div class="read_more">
@@ -278,7 +278,7 @@ function googleTranslateElementInit() {
                                 <a href="single_service1.php"><h3> LOGISTICS SERVICES</h3></a>
                             </div>
                             <div class="service_text">
-                                <p style="text-align:justify;">Through our Mediterranean Shippings services, we provide expedited Air Freight delivery,
+                                <p style="text-align:justify;">Through our McDan Logistics Ltd services, we provide expedited Air Freight delivery,
 								Air Cargo and Excess Baggage delivery.</p>
                             </div>
                             <div class="read_more">
@@ -316,7 +316,7 @@ function googleTranslateElementInit() {
                                 <a href="single_service3.php"><h3>Giant ship delivery</h3></a>
                             </div>
                             <div class="service_text">
-                                <p style="text-align:justify;">Mediterranean Shippings Company flexible and scalable sea freight solutions cover
+                                <p style="text-align:justify;">McDan Logistics Ltd flexible and scalable sea freight solutions cover
 								your specific needs. Our affiliation with leading carriers is the key to our cost-effective services.</p>
                             </div>
                             <div class="read_more">
@@ -335,7 +335,7 @@ function googleTranslateElementInit() {
                                 <a href="single_service4.php"><h3>Air shipping</h3></a>
                             </div>
                             <div class="service_text">
-                                <p style="text-align: justify;">Mediterranean Shippings Company is an airfreight forwarding specialists offering a
+                                <p style="text-align: justify;">McDan Logistics Ltd is an airfreight forwarding specialists offering a
 								comprehensive range of international air cargo solutions with unbeatable levels of customer service.</p>
                             </div>
                             <div class="read_more">
@@ -354,7 +354,7 @@ function googleTranslateElementInit() {
                                 <a href="single_service5.php"><h3> TRUCKING SERVICES</h3></a>
                             </div>
                             <div class="service_text">
-                                <p style="text-align:justify;">Mediterranean Shippings can handle a variety of domestic & international trucking services to suit your needs. </p>
+                                <p style="text-align:justify;">McDan Logistics Ltd can handle a variety of domestic & international trucking services to suit your needs. </p>
                             </div>
                             <div class="read_more">
                                 <a href="single_service5.php">read more <span class="fa fa-long-arrow-right"></span></a>
@@ -387,7 +387,7 @@ function googleTranslateElementInit() {
                         <div class="sub_title">
                             <p>Other Services</p>
                         </div>
-                        <div class="title"><h2>Mediterranean Shippings</h2></div>
+                        <div class="title"><h2>McDan Logistics Ltd</h2></div>
                     </div><!-- section_title starts -->
 
                     <!-- accrodion area starts  -->
@@ -506,7 +506,7 @@ Our modern warehouse facility is designed and equipped to handle all your storag
                                 </a>
                             </div>
                             <div class="footer_about_us">
-                                <p>Over the years, Mediterranean Shippings has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
+                                <p>Over the years, McDan Logistics Ltd has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
                             </div>
                             
                         </div>
@@ -537,7 +537,7 @@ Our modern warehouse facility is designed and equipped to handle all your storag
                             </div>
                             <div class="footer_address">
                                 <ul>
-                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">Mediterranean Shippings, UK.</div></li>
+                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">McDan Logistics Ltd, UK.</div></li>
                                     <li>
                                         <span class="fa fa-phone"></span>
                                         <div class="number address_right">
@@ -548,7 +548,7 @@ Our modern warehouse facility is designed and equipped to handle all your storag
                                     <li>
                                         <span class="fa fa-envelope-o"></span>
                                         <div class="address_right">
-                                            <a href="mailto:support@Mediterraneanshippings.com">support@mediterraneanshippings.com</a>
+                                            <a href="mailto:support@mcdanlogistics.com">support@mcdanlogistics.com</a>
                                             <a href="#">mediterraneanshippings.com</a>
                                         </div>
                                     </li>
@@ -567,14 +567,14 @@ Our modern warehouse facility is designed and equipped to handle all your storag
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> fast and reliable</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> fast and reliable</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> the best logistics</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> the best logistics</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
@@ -590,7 +590,7 @@ Our modern warehouse facility is designed and equipped to handle all your storag
             <div class="container">
                 <div class="col-md-6 xs_fullwidth col-xs-6">
                     <div class="footer_text_wrapper">
-                        <p class="footer_text">Copyright © Mediterranean Shippings. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">Mediterranean Shippings</a></p>
+                        <p class="footer_text">Copyright © McDan Logistics Ltd. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">McDan Logistics Ltd</a></p>
                     </div>
                 </div>
                 <div class="col-md-6 xs_fullwidth col-xs-6">

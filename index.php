@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Mediterranean Shippings</title>
+    <title>McDan Logistics Ltd</title>
 
     <!-- owl carousel css -->
     <link rel="stylesheet" href="css/owl.carousel.css"/>
@@ -181,7 +181,7 @@ function googleTranslateElementInit() {
                             <div class="single_info_section">
                                 <span class="fa fa-envelope v_middle"></span>
                                 <div class="contact_numbers right_info v_middle">
-                                    <p><a href="mailto:support@mediterraneanshippings.com">support@mediterraneanshippings.com</a></p>
+                                    <p><a href="mailto:support@mcdanlogistics.com">support@mcdanlogistics.com</a></p>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +238,7 @@ function googleTranslateElementInit() {
                                 <div class="col-md-8 col-md-offset-4">
                                     <div class="single_slider_wrapper">
                                         <span class="small_title fadeInRightShort animated">FAST DELIVERY</span><br>
-                                        <h1 class="big_title fadeInRightShort animated">Mediterranean Shippings is fast and reliable</h1>
+                                        <h1 class="big_title fadeInRightShort animated">McDan Logistics Ltd is fast and reliable</h1>
                                         <div class="hero_btn">
                                             <a href="services.html" class="trust_btn" data-hover="see more">see more</a>
                                         </div>
@@ -257,7 +257,7 @@ function googleTranslateElementInit() {
                                 <div class="col-md-8">
                                     <div class="single_slider_wrapper">
                                         <span class="small_title fadeInLeftShort animated">FAST DELIVERY</span><br>
-                                        <h1 class="big_title fadeInLeftShort animated">Mediterranean Shippings is the world leading logistics service</h1>
+                                        <h1 class="big_title fadeInLeftShort animated">McDan Logistics Ltd is the world leading logistics service</h1>
                                         <div class="hero_btn">
                                             <a href="services.html" class="trust_btn">see more</a>
                                         </div>
@@ -353,7 +353,7 @@ function googleTranslateElementInit() {
                     <div class="service_title">
                         <h4>Fast sea delivery</h4>
                     </div>
-                    <p>Mediterranean Shippings Company flexible and scalable sea freight solutions cover your specific needs. Our affiliation with leading carriers is the key to our cost-effective services.</p>
+                    <p>McDan Logistics Ltd flexible and scalable sea freight solutions cover your specific needs. Our affiliation with leading carriers is the key to our cost-effective services.</p>
                 </div>
             </div>
 
@@ -365,7 +365,7 @@ function googleTranslateElementInit() {
                     <div class="service_title">
                         <h4>Fast road delivery</h4>
                     </div>
-                    <p>Mediterranean Shippings Transport offers an efficient integrated transport system with multiple types of trucks available to support your trucking and distribution needs. </p>
+                    <p>McDan Logistics Ltd Transport offers an efficient integrated transport system with multiple types of trucks available to support your trucking and distribution needs. </p>
                 </div>
             </div>
 
@@ -377,7 +377,7 @@ function googleTranslateElementInit() {
                     <div class="service_title">
                         <h4>Fast air shipping</h4>
                     </div>
-                    <p>Mediterranean Shippings Company is an airfreight forwarding specialists offering a comprehensive range of international air cargo solutions with unbeatable levels of customer service. </p>
+                    <p>McDan Logistics Ltd is an airfreight forwarding specialists offering a comprehensive range of international air cargo solutions with unbeatable levels of customer service. </p>
                 </div>
             </div>
 
@@ -389,7 +389,7 @@ function googleTranslateElementInit() {
                     <div class="service_title">
                         <h4>online support</h4>
                     </div>
-                    <p>Mediterranean Shippings offer a 24/7 online support services to handle all your trucking services to suit your needs. </p>
+                    <p>McDan Logistics Ltd offer a 24/7 online support services to handle all your trucking services to suit your needs. </p>
                 </div>
             </div>
 
@@ -401,7 +401,7 @@ function googleTranslateElementInit() {
                     <div class="service_title">
                         <h4>best security system</h4>
                     </div>
-                    <p>Mediterranean Shippings Engages best security service model to ensure prompt, accurate delivery of your goods around the world </p>
+                    <p>McDan Logistics Ltd Engages best security service model to ensure prompt, accurate delivery of your goods around the world </p>
                 </div>
             </div>
         </div>
@@ -435,7 +435,7 @@ function googleTranslateElementInit() {
 
                         <div class="about_us_content">
                             <div class="who_we_text">
-                                <p style="text-align:justify;">Mediterranean Shippings offers a host of logistic management services and supply chain solutions.
+                                <p style="text-align:justify;">McDan Logistics Ltd offers a host of logistic management services and supply chain solutions.
 								We provide innovative solutions with the best people, processes, and technology. With years of providing world class service to our customers on the asset side, a need to
 								provide a one stop shop for a” true customer service logistic solution” was introduced. By
 								adding this dimension to an already dynamic and customer centric asset based provider, we
@@ -503,7 +503,7 @@ function googleTranslateElementInit() {
                                 </a>
                             </div>
                             <div class="footer_about_us">
-                                <p>Over the years, Mediterranean Shippings has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
+                                <p>Over the years, McDan Logistics Ltd has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
                             </div>
                             
                         </div>
@@ -534,7 +534,7 @@ function googleTranslateElementInit() {
                             </div>
                             <div class="footer_address">
                                 <ul>
-                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">Mediterranean Shippings, UK.</div></li>
+                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">McDan Logistics Ltd, UK.</div></li>
                                     <li>
                                         <span class="fa fa-phone"></span>
                                         <div class="number address_right">
@@ -545,8 +545,8 @@ function googleTranslateElementInit() {
                                     <li>
                                         <span class="fa fa-envelope-o"></span>
                                         <div class="address_right">
-                                            <a href="mailto:support@Mediterraneanshippings.com">support@mediterraneanshippings.com</a>
-                                            <a href="#">mediterraneanshippings.com</a>
+                                            <a href="mailto:support@mcdanlogistics.com">support@mcdanlogistics.com</a>
+                                            <a href="#">mcdanlogistics.com</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -564,14 +564,14 @@ function googleTranslateElementInit() {
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> fast and reliable</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> fast and reliable</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> the best logistics</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> the best logistics</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
@@ -587,7 +587,7 @@ function googleTranslateElementInit() {
             <div class="container">
                 <div class="col-md-6 xs_fullwidth col-xs-6">
                     <div class="footer_text_wrapper">
-                        <p class="footer_text">Copyright © Mediterranean Shippings. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">Mediterranean Shippings</a></p>
+                        <p class="footer_text">Copyright © McDan Logistics Ltd. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">McDan Logistics Ltd</a></p>
                     </div>
                 </div>
                 <div class="col-md-6 xs_fullwidth col-xs-6">

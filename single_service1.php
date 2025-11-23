@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Mediterranean Shippings</title>
+    <title>McDan Logistics Ltd</title>
 
     <!-- owl carousel css -->
     <link rel="stylesheet" href="css/owl.carousel.css"/>
@@ -270,12 +270,12 @@ function googleTranslateElementInit() {
 
                             <div class="post_content">
                                 <p style="text-align: justify;">
-                                    Through our Mediterranean Shippings services, we provide expedited Air Freight delivery, Air Cargo and Excess Baggage delivery. Mediterranean Shippings Company provides international logistics services and delivery of documents, parcels and freight to over 100 countries around the world.
+                                    Through our McDan Logistics Ltd services, we provide expedited Air Freight delivery, Air Cargo and Excess Baggage delivery. McDan Logistics Ltd provides international logistics services and delivery of documents, parcels and freight to over 100 countries around the world.
                                 </p>
 
                                 <p style="text-align: justify;">We know how important it is for your parcels to reach its destination via a single service provider with the capacity to respond flexibly.</p>
 
-								<p style="text-align: justify;">That is why we have developed a complete range of solutions tailored to your international logistics and shipping requirements. Whether it’s handling a single document or a 500-kilogram freight consignment, Mediterranean Shippings has the international freight solution for your needs. We also provide flexible rates for freight forwarding to our trusted partners in areas beyond our reach. With the launch of our new office in Houston, you can now send items to and from the United Stateds with ease. Simply let us on the details of your shipment and we'll handle it from there. For international ecommerce, you can use our Houston address on the checkout and we'll send the item to your destination address on your behalf.  </p>
+								<p style="text-align: justify;">That is why we have developed a complete range of solutions tailored to your international logistics and shipping requirements. Whether it’s handling a single document or a 500-kilogram freight consignment, McDan Logistics Ltd has the international freight solution for your needs. We also provide flexible rates for freight forwarding to our trusted partners in areas beyond our reach. With the launch of our new office in Houston, you can now send items to and from the United Stateds with ease. Simply let us on the details of your shipment and we'll handle it from there. For international ecommerce, you can use our Houston address on the checkout and we'll send the item to your destination address on your behalf.  </p>
                             </div>
                         </div>
                     </div>
@@ -305,7 +305,7 @@ function googleTranslateElementInit() {
                                 </a>
                             </div>
                             <div class="footer_about_us">
-                                <p>Over the years, Mediterranean Shippings has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
+                                <p>Over the years, McDan Logistics Ltd has diversified its activities to include overland transportation, logistics and a growing portfolio of port terminal investments. Today, our focus remains true to our roots and we continue to build and retaining long-term trusted partnerships with customers of all size and scale.  </p>
                             </div>
                             
                         </div>
@@ -336,7 +336,7 @@ function googleTranslateElementInit() {
                             </div>
                             <div class="footer_address">
                                 <ul>
-                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">Mediterranean Shippings, UK.</div></li>
+                                    <li><span class="fa fa-paper-plane-o"></span> <div class="address_right">McDan Logistics Ltd, UK.</div></li>
                                     <li>
                                         <span class="fa fa-phone"></span>
                                         <div class="number address_right">
@@ -347,7 +347,7 @@ function googleTranslateElementInit() {
                                     <li>
                                         <span class="fa fa-envelope-o"></span>
                                         <div class="address_right">
-                                            <a href="mailto:support@Mediterraneanshippings.com">support@mediterraneanshippings.com</a>
+                                            <a href="mailto:support@mcdanlogistics.com">support@mcdanlogistics.com</a>
                                             <a href="#">mediterraneanshippings.com</a>
                                         </div>
                                     </li>
@@ -366,14 +366,14 @@ function googleTranslateElementInit() {
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> fast and reliable</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> fast and reliable</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
                                 <div class="single_tweets">
                                     <span class="twit_icon fa fa-twitter"></span>
                                     <div class="twit">
-                                        <p><span class="tag">@Mediterranean Shippings</span> the best logistics</p>
+                                        <p><span class="tag">@McDan Logistics Ltd</span> the best logistics</p>
                                         <span class="time">Recent</span>
                                     </div>
                                 </div>
@@ -389,7 +389,7 @@ function googleTranslateElementInit() {
             <div class="container">
                 <div class="col-md-6 xs_fullwidth col-xs-6">
                     <div class="footer_text_wrapper">
-                        <p class="footer_text">Copyright © Mediterranean Shippings. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">Mediterranean Shippings</a></p>
+                        <p class="footer_text">Copyright © McDan Logistics Ltd. All Rights Reserved by <a href="https://themeforest.net/user/themeebit">McDan Logistics Ltd</a></p>
                     </div>
                 </div>
                 <div class="col-md-6 xs_fullwidth col-xs-6">
