@@ -211,20 +211,19 @@ else{
                                 </table>
                             </div>
                         </div>
-                      </div>
 <div id="editor"></div>
 <button id="cmd">Generate PDF</button>
 
+            
+            
+            
+            
+            
+            
+            
+          </div>
+        </section>
       </div>
-      </div>
-      </div> 
-      </div>
-      </div>
-      </div>
-      </div>
-      </section>
-      </div>
-      </div>       
      
      
      
@@ -235,35 +234,14 @@ else{
 $(document).ready(function() {
     var table = $('#example').DataTable( {
         lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ],
-       
+        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
     } );
     
 
     table.buttons().container()
         .insertBefore( '#example_filter' );
 
-        table.buttons().container()
+    table.buttons().container()
         .appendTo( '#example_wrapper .col-sm-12:eq(0)' );
 } );
-
-
-
 </script>
-
-            
-            
-            
-            
-            
-            
-            
-          </div>
-
-
-
-
-            </div>
-          </div>
-        </section>
-      </div>
