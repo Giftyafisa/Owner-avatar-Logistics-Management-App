@@ -224,6 +224,8 @@ else{
           </div>
         </section>
       </div>
+    </div>
+  </div>
      
      
      
@@ -245,3 +247,6 @@ $(document).ready(function() {
         .appendTo( '#example_wrapper .col-sm-12:eq(0)' );
 } );
 </script>
+
+</body>
+</html>
