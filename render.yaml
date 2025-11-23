@@ -1,9 +1,9 @@
 services:
   - type: web
     name: owner-avatar-logistics
-    runtime: docker
-    plan: free
-    region: oregon
+    env: docker
+    repo: https://github.com/Giftyafisa/Owner-avatar-Logistics-Management-App
     branch: main
     dockerfilePath: ./Dockerfile
-    dockerContext: ./
+    dockerContext: .
+    plan: free
