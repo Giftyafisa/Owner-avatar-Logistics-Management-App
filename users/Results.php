@@ -924,7 +924,7 @@ if (!$result) {
                                 <h4 class="modal-title">📦 <?php echo htmlspecialchars($track_row['pname']); ?></h4>
                             </div>
                             <div class="modal-body" style="text-align: center;">
-                                <img src="../admin/pages/pimages/<?php echo htmlspecialchars($track_row['image']); ?>" style="max-width: 100%; max-height: 600px; border-radius: 8px;">
+                                <img src="/admin/pages/pimages/<?php echo htmlspecialchars($track_row['image']); ?>" style="max-width: 100%; max-height: 600px; border-radius: 8px;">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
