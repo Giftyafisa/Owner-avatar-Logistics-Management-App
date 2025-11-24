@@ -894,6 +894,8 @@ if (!$result) {
 			  $result = db_query($sql);
 			  if(db_num_rows($result) > 0){
 				$row = db_fetch_assoc($result); 
+			  }
+			?>
 
             <!-- Package Image Section -->
             <div style="background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; margin-top: 30px; text-align: center; padding: 40px 20px;">
