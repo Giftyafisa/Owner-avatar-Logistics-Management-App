@@ -74,10 +74,26 @@ if(isset($_POST['set'])){
    if($query_result){
        
        if(!empty($image) && isset($_FILES['image']['tmp_name'])){
-           if(!move_uploaded_file($_FILES['image']['tmp_name'], $target)){
+           // Check for file upload errors
+           if($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+               $upload_errors = array(
+                   UPLOAD_ERR_INI_SIZE => 'File exceeds upload_max_filesize',
+                   UPLOAD_ERR_FORM_SIZE => 'File exceeds MAX_FILE_SIZE',
+                   UPLOAD_ERR_PARTIAL => 'File was only partially uploaded',
+                   UPLOAD_ERR_NO_FILE => 'No file was uploaded',
+                   UPLOAD_ERR_NO_TMP_DIR => 'Missing temp directory',
+                   UPLOAD_ERR_CANT_WRITE => 'Failed to write file',
+                   UPLOAD_ERR_EXTENSION => 'Upload stopped by extension'
+               );
+               $error_msg = $upload_errors[$_FILES['image']['error']] ?? 'Unknown upload error';
+               error_log("File upload error for PID: $pid - $error_msg");
+               $msg = "Package added but image upload failed: $error_msg";
+           } elseif(!move_uploaded_file($_FILES['image']['tmp_name'], $target)){
                $msg = "Package added but image upload failed!";
+               error_log("File move failed for PID: $pid - Target: $target, File: " . $_FILES['image']['name']);
            } else {
                $msg = "Package added successfully!";
+               error_log("File upload successful for PID: $pid - File: " . $_FILES['image']['name']);
            }
        } else {
            $msg = "Package added successfully (no image)!";

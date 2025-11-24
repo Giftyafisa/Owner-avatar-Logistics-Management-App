@@ -284,7 +284,7 @@ function googleTranslateElementInit() {
     <script src="js/waypoints.min.js"></script>
 
     <!-- google map js -->
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
 
     <!-- smoothscroll js -->
     <script src="js/jqury.smooth-scroll.min.js"></script>
