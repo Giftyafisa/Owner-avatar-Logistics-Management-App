@@ -20,24 +20,24 @@ INSERT INTO admin (id, email, password) VALUES
 -- Table structure for table history
 CREATE TABLE history (
   id SERIAL PRIMARY KEY,
-  pname VARCHAR(100) NOT NULL,
+  pname VARCHAR(200) NOT NULL,
   shipdate VARCHAR(100) NOT NULL,
-  saddress VARCHAR(200) NOT NULL,
+  saddress VARCHAR(300) NOT NULL,
   sname VARCHAR(200) NOT NULL,
-  raddress VARCHAR(200) NOT NULL,
+  raddress VARCHAR(300) NOT NULL,
   rname VARCHAR(200) NOT NULL,
-  email VARCHAR(100) NOT NULL,
+  email VARCHAR(200) NOT NULL,
   status VARCHAR(100) NOT NULL,
-  location VARCHAR(100) NOT NULL,
+  location VARCHAR(200) NOT NULL,
   pdate VARCHAR(100) NOT NULL,
   pid VARCHAR(100) NOT NULL,
   edd VARCHAR(100) NOT NULL,
   weight VARCHAR(100) NOT NULL,
   servicetype VARCHAR(100) NOT NULL,
-  pdesc VARCHAR(100) NOT NULL,
+  pdesc VARCHAR(300) NOT NULL,
   qty VARCHAR(100) NOT NULL,
-  image VARCHAR(100) NOT NULL,
-  remark VARCHAR(100) NOT NULL
+  image VARCHAR(300) NOT NULL,
+  remark VARCHAR(500) NOT NULL
 );
 
 -- Dumping data for table history
@@ -70,24 +70,24 @@ INSERT INTO settings (id, sname, apipr, apipu, currency, branch, bname, baddress
 -- Table structure for table track
 CREATE TABLE track (
   id SERIAL PRIMARY KEY,
-  pname VARCHAR(100) NOT NULL,
+  pname VARCHAR(200) NOT NULL,
   shipdate VARCHAR(100) NOT NULL,
-  saddress VARCHAR(200) NOT NULL,
+  saddress VARCHAR(300) NOT NULL,
   sname VARCHAR(200) NOT NULL,
-  raddress VARCHAR(200) NOT NULL,
+  raddress VARCHAR(300) NOT NULL,
   rname VARCHAR(200) NOT NULL,
-  email VARCHAR(100) NOT NULL,
+  email VARCHAR(200) NOT NULL,
   status VARCHAR(100) NOT NULL,
-  location VARCHAR(100) NOT NULL,
+  location VARCHAR(200) NOT NULL,
   pdate VARCHAR(100) NOT NULL,
   pid VARCHAR(100) NOT NULL,
   edd VARCHAR(100) NOT NULL,
   weight VARCHAR(100) NOT NULL,
   servicetype VARCHAR(100) NOT NULL,
-  pdesc VARCHAR(100) NOT NULL,
+  pdesc VARCHAR(300) NOT NULL,
   qty VARCHAR(100) NOT NULL,
-  image VARCHAR(100) NOT NULL,
-  remark VARCHAR(100) NOT NULL
+  image VARCHAR(300) NOT NULL,
+  remark VARCHAR(500) NOT NULL
 );
 
 -- Dumping data for table track
