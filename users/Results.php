@@ -273,8 +273,9 @@ function googleTranslateElementInit() {
 <?php
 include "../config/database.php";
 
+include "../config/database.php";
 
-$tid = $_GET['track'];
+$tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 ?>
 
 

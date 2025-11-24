@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 if(isset($_SESSION['uid'])){
  
  
- $ids = $_GET['id'];
+ $ids = isset($_GET['id']) ? db_escape_string($_GET['id']) : '';
   include '../../config/database.php';
   include '../../config/config.php';
   include 'header.php';
@@ -32,27 +32,27 @@ else{
 
 if(isset($_POST['uset'])){
 
-   $ids = $_POST['id'];
-    $pid = $_POST['pid'];
- $pname = $_POST['pname'];
-   $shipdate = $_POST['shipdate'];
-   $saddress = $_POST['saddress'];
-   $sname = $_POST['sname'];
-   $raddress = $_POST['raddress'];
-   $rname = $_POST['rname'];
-   $email = $_POST['email'];
-   $status = $_POST['status'];
-   $location = $_POST['location'];
-   $pdate = $_POST['pdate'];
+   $ids = isset($_POST['id']) ? db_escape_string($_POST['id']) : '';
+    $pid = isset($_POST['pid']) ? db_escape_string($_POST['pid']) : '';
+ $pname = isset($_POST['pname']) ? db_escape_string($_POST['pname']) : '';
+   $shipdate = isset($_POST['shipdate']) ? db_escape_string($_POST['shipdate']) : '';
+   $saddress = isset($_POST['saddress']) ? db_escape_string($_POST['saddress']) : '';
+   $sname = isset($_POST['sname']) ? db_escape_string($_POST['sname']) : '';
+   $raddress = isset($_POST['raddress']) ? db_escape_string($_POST['raddress']) : '';
+   $rname = isset($_POST['rname']) ? db_escape_string($_POST['rname']) : '';
+   $email = isset($_POST['email']) ? db_escape_string($_POST['email']) : '';
+   $status = isset($_POST['status']) ? db_escape_string($_POST['status']) : '';
+   $location = isset($_POST['location']) ? db_escape_string($_POST['location']) : '';
+   $pdate = isset($_POST['pdate']) ? db_escape_string($_POST['pdate']) : '';
    
-  $remark = $_POST['remark'];
+  $remark = isset($_POST['remark']) ? db_escape_string($_POST['remark']) : '';
    
    
-   $edd = $_POST['edd'];
-   $weight = $_POST['weight'];
-   $servicetype = $_POST['servicetype'];
-   $pdesc = $_POST['pdesc'];
-   $qty = $_POST['qty'];
+   $edd = isset($_POST['edd']) ? db_escape_string($_POST['edd']) : '';
+   $weight = isset($_POST['weight']) ? db_escape_string($_POST['weight']) : '';
+   $servicetype = isset($_POST['servicetype']) ? db_escape_string($_POST['servicetype']) : '';
+   $pdesc = isset($_POST['pdesc']) ? db_escape_string($_POST['pdesc']) : '';
+   $qty = isset($_POST['qty']) ? db_escape_string($_POST['qty']) : '';
    
  $image = $_FILES['image']['name'];
 	$target = "pimages/".basename($image);

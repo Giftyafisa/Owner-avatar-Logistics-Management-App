@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-  $ids = $_GET['id'];
+  $ids = isset($_GET['id']) ? db_escape_string($_GET['id']) : '';
 if(isset($_SESSION['uid'])){
  
 
@@ -164,11 +164,11 @@ overflow-x: auto;
         
          <?php 
  
-   $ids = $_GET['id'];
+   $ids = isset($_GET['id']) ? db_escape_string($_GET['id']) : '';
 
  
  
- $sql= "SELECT * FROM track WHERE id = $ids";
+ $sql= "SELECT * FROM track WHERE id = '$ids'";
 	$result = db_query($sql);
 $row = db_fetch_assoc($result);
 				 $pid = $row['pid'];	 

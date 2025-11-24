@@ -4,7 +4,7 @@ include "config/database.php";
 
 if(isset($_POST['submit'])){
 
-	$tid = $_POST['tid'];
+	$tid = isset($_POST['tid']) ? db_escape_string($_POST['tid']) : '';
 
 
 

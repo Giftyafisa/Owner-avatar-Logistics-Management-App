@@ -8,7 +8,7 @@ if(isset($_SESSION['uid'])){
   include '../../config/config.php';
   include 'header.php';
   if(isset($_GET['email']) ){
-  $email = $_GET['email'];
+  $email = isset($_GET['email']) ? db_escape_string($_GET['email']) : '';
   }else{
    $email = $_GET['email'] = '0';
    $acct = $_GET['account'] = '0';  
@@ -27,9 +27,9 @@ else{
 if(isset($_POST['mssg'])){
 
 
- $email = $_POST['email'];
-   $title = $_POST['title'];
-   $message = $_POST['message'];
+ $email = isset($_POST['email']) ? db_escape_string($_POST['email']) : '';
+   $title = isset($_POST['title']) ? db_escape_string($_POST['title']) : '';
+   $message = isset($_POST['message']) ? db_escape_string($_POST['message']) : '';
    
     $msgid ='cabcdg19etsfjhdshdsh35678gwyjerehuhb/>()[]{}|\dTSGSAWQUJHDCSMNBVCBNRTPZXMCBVN1234567890';
             $msgid = str_shuffle($msgid);
@@ -50,7 +50,7 @@ if(isset($_POST['mssg'])){
   
 if(isset($_POST['delete'])){
 	
-  $msgid = $_POST['msgid'];
+  $msgid = isset($_POST['msgid']) ? db_escape_string($_POST['msgid']) : '';
   
 $sql = "DELETE FROM messageadmin WHERE msgid='$msgid'";
 
@@ -65,8 +65,8 @@ if (db_query($sql)) {
   
 if(isset($_POST['send'])){
 	
-  $msgid = $_POST['msgid'];
-  $reply = $_POST['reply'];
+  $msgid = isset($_POST['msgid']) ? db_escape_string($_POST['msgid']) : '';
+  $reply = isset($_POST['reply']) ? db_escape_string($_POST['reply']) : '';
   
 $sql = "UPDATE  messageadmin SET reply='$reply',astatus='1' WHERE msgid='$msgid'";
 

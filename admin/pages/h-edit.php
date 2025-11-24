@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 
  
- $ids = $_GET['id'];
+ $ids = isset($_GET['id']) ? db_escape_string($_GET['id']) : '';
  
 
 if(isset($_SESSION['uid'])){
@@ -34,18 +34,18 @@ else{
 
 if(isset($_POST['set'])){
 
- $pname = $_POST['pname'];
-   $shipdate = $_POST['shipdate'];
-   $saddress = $_POST['saddress'];
-   $sname = $_POST['sname'];
-   $raddress = $_POST['raddress'];
-   $rname = $_POST['rname'];
-   $email = $_POST['email'];
-   $status = $_POST['status'];
-   $location = $_POST['location'];
-   $pdate = $_POST['pdate'];
- $pid = $_POST['pid'];
-  $ids = $_GET['id'];
+ $pname = isset($_POST['pname']) ? db_escape_string($_POST['pname']) : '';
+   $shipdate = isset($_POST['shipdate']) ? db_escape_string($_POST['shipdate']) : '';
+   $saddress = isset($_POST['saddress']) ? db_escape_string($_POST['saddress']) : '';
+   $sname = isset($_POST['sname']) ? db_escape_string($_POST['sname']) : '';
+   $raddress = isset($_POST['raddress']) ? db_escape_string($_POST['raddress']) : '';
+   $rname = isset($_POST['rname']) ? db_escape_string($_POST['rname']) : '';
+   $email = isset($_POST['email']) ? db_escape_string($_POST['email']) : '';
+   $status = isset($_POST['status']) ? db_escape_string($_POST['status']) : '';
+   $location = isset($_POST['location']) ? db_escape_string($_POST['location']) : '';
+   $pdate = isset($_POST['pdate']) ? db_escape_string($_POST['pdate']) : '';
+ $pid = isset($_POST['pid']) ? db_escape_string($_POST['pid']) : '';
+  $ids = isset($_GET['id']) ? db_escape_string($_GET['id']) : '';
   
     
 

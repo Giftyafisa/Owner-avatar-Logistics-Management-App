@@ -3,7 +3,7 @@ session_start();
 
 if(isset($_SESSION['uid'])){
     
-  $pid = $_GET['pid'];
+  $pid = isset($_GET['pid']) ? db_escape_string($_GET['pid']) : '';
  
   include '../../config/database.php';
   include '../../config/config.php';
@@ -19,7 +19,7 @@ else{
 
 if(isset($_POST['delete'])){
     
-     $id = $_POST['id'];
+     $id = isset($_POST['id']) ? db_escape_string($_POST['id']) : '';
 
 $sql = "DELETE FROM history WHERE id='$id'";
 

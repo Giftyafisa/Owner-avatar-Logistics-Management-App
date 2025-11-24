@@ -18,7 +18,7 @@ else{
 
 if(isset($_POST['confirm'])){
     
-    $pi = $_POST['pid'];
+    $pi = isset($_POST['pid']) ? db_escape_string($_POST['pid']) : '';
     
     $sql = "UPDATE  track SET status = 'confirm' WHERE pid = '$pi'";
     
@@ -41,7 +41,7 @@ if(isset($_POST['confirm'])){
 
 if(isset($_POST['process'])){
     
-    $pi = $_POST['pid'];
+    $pi = isset($_POST['pid']) ? db_escape_string($_POST['pid']) : '';
     
     $sql = "UPDATE  track SET status = 'process' WHERE pid = '$pi'";
     
@@ -64,7 +64,7 @@ if(isset($_POST['process'])){
 
 if(isset($_POST['quality'])){
     
-    $pi = $_POST['pid'];
+    $pi = isset($_POST['pid']) ? db_escape_string($_POST['pid']) : '';
     
     $sql = "UPDATE  track SET status = 'quality' WHERE pid = '$pi'";
     
@@ -86,7 +86,7 @@ if(isset($_POST['quality'])){
 
 if(isset($_POST['dispatch'])){
     
-    $pi = $_POST['pid'];
+    $pi = isset($_POST['pid']) ? db_escape_string($_POST['pid']) : '';
     
     $sql = "UPDATE  track SET status = 'dispatch' WHERE pid = '$pi'";
     
@@ -109,7 +109,7 @@ if(isset($_POST['dispatch'])){
 
 if(isset($_POST['deliver'])){
     
-    $pi = $_POST['pid'];
+    $pi = isset($_POST['pid']) ? db_escape_string($_POST['pid']) : '';
     
     $sql = "UPDATE  track SET status = 'deliver' WHERE pid = '$pi'";
     
@@ -157,7 +157,7 @@ if(isset($_POST['deliver'])){
 
 <?php 
 
-$pids = $_GET['pid'];
+$pids = isset($_GET['pid']) ? db_escape_string($_GET['pid']) : '';
 ?>
 
 

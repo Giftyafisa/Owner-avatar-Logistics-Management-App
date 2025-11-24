@@ -6,7 +6,7 @@
 include "../config/database.php";
 
 
-$tid = $_GET['track'];
+$tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 ?>
 <style>
     
@@ -49,7 +49,7 @@ h3 {
      <?php 
 			
 		 
- $sql= "SELECT * FROM track WHERE pid = $tid";
+ $sql= "SELECT * FROM track WHERE pid = '$tid'";
 	$result = db_query($sql);
 $row = db_fetch_assoc($result);
 				 $pid = $row['pid'];
