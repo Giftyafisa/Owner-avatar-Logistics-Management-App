@@ -371,13 +371,37 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 			
 			$sql= "SELECT * FROM track WHERE pid = '$tid'";
 			  $result = db_query($sql);
+			  $confirm = ''; // Initialize the variable
 			  if(db_num_rows($result) > 0){
 				$row = db_fetch_assoc($result); 
               
-				$row['status'];
+				$status = isset($row['status']) ? strtolower(trim($row['status'])) : '';
 				
-				 // if confirmed
-				if(isset($row['status']) && $row['status'] == "confirm" ){
+				// Generate shipment tracking visualization based on status
+				 // if in transit
+				if($status == "in transit" ){
+	
+	
+	
+	     $confirm  =     ' <div class="confirm">
+                <div class="imgcircle" style="background-color:#140354">
+                <img src="images/confirm.png" alt="confirm order" style="display:"  >
+            	</div>
+				<span class="line"></span>
+				<p  style="">Confirmed </p>
+			    </div>
+			    
+			    <div class="process">
+           	 	<div class="imgcircle" style="background-color:#140354">
+                	<img src="images/process.png" alt="process order" style="display:non">
+            	</div>
+				<span class="line"></span>
+				<p style="display:non">In Transit</p>
+			</div>';
+			
+			
+				} // if confirmed
+				elseif($status == "confirm" ){
 	
 	
 	
@@ -394,7 +418,7 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 				
 				// if processed
 				
-				if(isset($row['status']) && $row['status'] == "process"  ){
+				elseif($status == "process"  ){
 
 			 $confirm  =   ' <div class="confirm">
 			 
@@ -424,7 +448,7 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 				
 				// if dispatched
 				
-				if(isset($row['status']) && $row['status'] == "dispatch" ){
+				elseif($status == "dispatch" ){
 				    
 				    
 				    
@@ -483,7 +507,7 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 				
 				
 				
-				if(isset($row['status']) && $row['status'] == "quality" ){
+				elseif($status == "quality" ){
 
 							    
 				    $confirm  =   ' <div class="confirm">
@@ -521,7 +545,7 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 				// if delivered
 				
 				
-				if(isset($row['status']) && $row['status'] == "deliver" ){
+				elseif($status == "deliver" ){
 
 
  
@@ -572,7 +596,10 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 			</div>
 			';
 				}
-				
+				else {
+					// Default fallback if status doesn't match any known values
+					$confirm = '<div class="alert alert-info"><p>Status: ' . htmlspecialchars($row['status']) . '</p></div>';
+				}
 				  
 			  }
 				  
