@@ -34,16 +34,16 @@ if(isset($_POST['set'])){
    $email = isset($_POST['email']) ? db_escape_string($_POST['email']) : '';
    $status = isset($_POST['status']) ? db_escape_string($_POST['status']) : '';
    $location = isset($_POST['location']) ? db_escape_string($_POST['location']) : '';
-   $pdate = isset($_POST['pdate']) ? db_escape_string($_POST['pdate']) : '';
+   $pdate = isset($_POST['pdate']) && !empty($_POST['pdate']) ? db_escape_string($_POST['pdate']) : date('Y-m-d');
    
     $remark = isset($_POST['remark']) ? db_escape_string($_POST['remark']) : '';
    
    
-   $edd = isset($_POST['edd']) ? db_escape_string($_POST['edd']) : '';
-   $weight = isset($_POST['weight']) ? db_escape_string($_POST['weight']) : '';
-   $servicetype = isset($_POST['servicetype']) ? db_escape_string($_POST['servicetype']) : '';
-   $pdesc = isset($_POST['pdesc']) ? db_escape_string($_POST['pdesc']) : '';
-   $qty = isset($_POST['qty']) ? db_escape_string($_POST['qty']) : '';
+   $edd = isset($_POST['edd']) ? db_escape_string($_POST['edd']) : date('Y-m-d', strtotime('+7 days'));
+   $weight = isset($_POST['weight']) ? db_escape_string($_POST['weight']) : 'N/A';
+   $servicetype = isset($_POST['servicetype']) ? db_escape_string($_POST['servicetype']) : 'Standard';
+   $pdesc = isset($_POST['pdesc']) ? db_escape_string($_POST['pdesc']) : 'Package';
+   $qty = isset($_POST['qty']) ? db_escape_string($_POST['qty']) : '1';
    
    $image = isset($_FILES['image']['name']) ? db_escape_string($_FILES['image']['name']) : '';
 	$target = !empty($image) ? "pimages/".basename($image) : '';
