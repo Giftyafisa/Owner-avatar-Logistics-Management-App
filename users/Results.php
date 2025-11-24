@@ -357,21 +357,40 @@ if (!$result) {
                       
     
     
-	<div class="content1" style="background-color:#140354">
-		<h2>Order Tracking: <?php echo $row['pid'];?></h2>
-	</div>
-	<div class="content2" style="background-color:#e8fafc">
-		<div class="content2-header1">
-			<p>Expected delivery date : <span><?php echo $row['edd'];?></span></p>
-		</div>
-		<div class="content2-header1">
-			<p>Status : <span><?php echo $row['status'];?></span></p>
-		</div>
-		<div class="content2-header1">
-			<p>Date Shipped : <span><?php echo $row['shipdate'];?></span></p>
-		</div>
-		<div class="clear"></div>
-	</div>
+	
+	<div class="container" style="margin-top: 30px;">
+	    <!-- Tracking Header -->
+	    <div class="row">
+	        <div class="col-xs-12">
+	            <div style="background: linear-gradient(135deg, #140354 0%, #1a0a4d 100%); color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px;">
+	                <h1 style="margin: 0; font-size: 28px; font-weight: bold;">📦 Package Tracking</h1>
+	                <h2 style="margin: 10px 0 0 0; font-size: 18px; font-weight: normal; opacity: 0.9;">ID: <span style="font-family: monospace; font-weight: bold; font-size: 20px;"><?php echo htmlspecialchars($row['pid']); ?></span></h2>
+	            </div>
+	        </div>
+	    </div>
+
+	    <!-- Quick Status Info Cards -->
+	    <div class="row" style="margin-bottom: 30px;">
+	        <div class="col-xs-12 col-sm-4" style="margin-bottom: 15px;">
+	            <div style="background: #f8f9fa; border-left: 4px solid #140354; padding: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+	                <p style="margin: 0; color: #666; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Current Status</p>
+	                <p style="margin: 10px 0 0 0; font-size: 18px; font-weight: bold; color: #140354;">📍 <?php echo ucfirst($row['status']); ?></p>
+	            </div>
+	        </div>
+	        <div class="col-xs-12 col-sm-4" style="margin-bottom: 15px;">
+	            <div style="background: #f8f9fa; border-left: 4px solid #28a745; padding: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+	                <p style="margin: 0; color: #666; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Shipped Date</p>
+	                <p style="margin: 10px 0 0 0; font-size: 18px; font-weight: bold; color: #28a745;">📅 <?php echo $row['shipdate']; ?></p>
+	            </div>
+	        </div>
+	        <div class="col-xs-12 col-sm-4" style="margin-bottom: 15px;">
+	            <div style="background: #f8f9fa; border-left: 4px solid #ff6b6b; padding: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+	                <p style="margin: 0; color: #666; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Expected Delivery</p>
+	                <p style="margin: 10px 0 0 0; font-size: 18px; font-weight: bold; color: #ff6b6b;">🎯 <?php echo $row['edd']; ?></p>
+	            </div>
+	        </div>
+	    </div>
+</div>
 	
 	
 	
@@ -616,17 +635,53 @@ if (!$result) {
 				  
 				  ?>
 	
-	<div class="content3">
-        <div class="shipment">
-		 <?php echo $confirm ;?>
-			
-		
-			
-		
-			<div class="clear"></div>
-		</div>
+	<!-- Tracking Timeline -->
+	<div class="container" style="margin: 40px 0;">
+	    <div class="row">
+	        <div class="col-xs-12">
+	            <h3 style="font-size: 22px; margin-bottom: 30px; font-weight: bold;">📍 Shipment Journey</h3>
+	            <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow-x: auto;">
+	                <div style="display: flex; gap: 15px; min-width: 100%; flex-wrap: wrap; justify-content: space-between;">
+	                    <?php 
+	                    $statuses = array(
+	                        array('id' => 'confirmed', 'name' => 'Confirmed', 'icon' => '✓', 'color' => '#140354'),
+	                        array('id' => 'in transit', 'name' => 'In Transit', 'icon' => '📦', 'color' => '#4a90e2'),
+	                        array('id' => 'processing', 'name' => 'Processing', 'icon' => '⚙️', 'color' => '#f5a623'),
+	                        array('id' => 'quality', 'name' => 'Quality Check', 'icon' => '🔍', 'color' => '#7ed321'),
+	                        array('id' => 'dispatched', 'name' => 'Dispatched', 'icon' => '🚚', 'color' => '#bd10e0'),
+	                        array('id' => 'delivered', 'name' => 'Delivered', 'icon' => '✔️', 'color' => '#50e3c2')
+	                    );
+	                    
+	                    $current_status = strtolower(trim($row['status']));
+	                    $current_index = -1;
+	                    
+	                    foreach ($statuses as $i => $s) {
+	                        if (strpos($current_status, strtolower($s['id'])) !== false) {
+	                            $current_index = $i;
+	                        }
+	                    }
+	                    
+	                    foreach ($statuses as $i => $status): 
+	                        $is_completed = $i <= $current_index;
+	                        $is_current = $i == $current_index;
+	                    ?>
+	                    <div style="flex: 1; min-width: 120px; text-align: center; position: relative;">
+	                        <div style="background: <?php echo $is_completed ? $status['color'] : '#e0e0e0'; ?>; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 24px; box-shadow: <?php echo $is_current ? '0 0 20px ' . $status['color'] : 'none'; ?>; box-sizing: border-box; border: <?php echo $is_current ? '3px solid ' . $status['color'] : 'none'; ?>;">
+	                            <?php echo $status['icon']; ?>
+	                        </div>
+	                        <p style="margin: 0; font-size: 13px; font-weight: 600; color: <?php echo $is_completed ? '#333' : '#999'; ?>;">
+	                            <?php echo $status['name']; ?>
+	                        </p>
+	                        <?php if ($is_current): ?>
+	                            <span style="background: #ff6b6b; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px; display: inline-block; margin-top: 5px; font-weight: bold;">CURRENT</span>
+	                        <?php endif; ?>
+	                    </div>
+	                    <?php endforeach; ?>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 	</div>
-</div>
 				
 					
 					
@@ -699,141 +754,132 @@ if (!$result) {
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <?php 
-			
-			$sql= "SELECT * FROM track WHERE pid = '$tid'";
-			  $result = db_query($sql);
-			  if(db_num_rows($result) > 0){
-				$row = db_fetch_assoc($result); 
-              
-				$row['email'];
-				if(isset($row['location'])){
+            <h3 style="font-size: 22px; margin-bottom: 30px; font-weight: bold; margin-top: 40px;">📋 Package Details</h3>
+        </div>
+    </div>
 
-					$location = $row['location'];
-				}
-				  
-			  }
-				  
-				  ?>
-                      
-           
-            <hr>
-            <div class="row" >
-                <div class="col-xs-12 col-md-4 col-lg-4 pull-left" >
-                    <div class="panel panel-default height" style="background-color:#e8fafc">
-                        <div class="panel-heading" style="color:#fff; background-color:#140354">Shipment Details</div>
-                        <div class="panel-body" style="background-color:#e8fafc">
-                            <strong>Quantity : </strong> <?php echo $row['qty'];?> <br>
-                           <br>
-                           
-                           
-                            <strong>Weight : </strong> <?php echo $row['weight'];?><br>
-                            <br>
-                            <strong>Service Type : </strong>  <?php echo $row['servicetype'];?>
-                                 <br>
-                           
-                            <br>    
-                            <strong>Description : </strong>  <?php echo $row['pdesc'];?>
-                        </div>
+    <!-- Three Column Details Layout - Responsive -->
+    <div class="row" style="margin-bottom: 40px;">
+        <!-- Shipment Details -->
+        <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 20px;">
+            <div style="background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
+                <div style="background: linear-gradient(135deg, #140354 0%, #1a0a4d 100%); color: white; padding: 20px; font-weight: bold; font-size: 16px;">
+                    📦 Shipment Details
+                </div>
+                <div style="padding: 25px;">
+                    <div style="margin-bottom: 18px; display: flex; justify-content: space-between; align-items: start;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase;">Quantity</span>
+                        <span style="font-size: 16px; font-weight: bold; color: #140354;"><?php echo htmlspecialchars($row['qty']); ?></span>
+                    </div>
+                    <div style="border-top: 1px solid #e0e0e0; padding-top: 18px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: start;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase;">Weight</span>
+                        <span style="font-size: 16px; font-weight: bold; color: #140354;"><?php echo htmlspecialchars($row['weight']); ?></span>
+                    </div>
+                    <div style="border-top: 1px solid #e0e0e0; padding-top: 18px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: start;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase;">Service</span>
+                        <span style="font-size: 16px; font-weight: bold; color: #140354;"><?php echo htmlspecialchars($row['servicetype']); ?></span>
+                    </div>
+                    <div style="border-top: 1px solid #e0e0e0; padding-top: 18px;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 10px;">Description</span>
+                        <p style="margin: 0; font-size: 14px; color: #333; line-height: 1.5;"><?php echo htmlspecialchars($row['pdesc']); ?></p>
                     </div>
                 </div>
-                
-                <div class="col-xs-12 col-md-4 col-lg-4">
-                    <div class="panel panel-default height" style="background-color:#e8fafc">
-                        <div class="panel-heading" style="color:#fff; background-color:#140354" >Destination</div>
-                        <div class="panel-body">
-                           <strong>Receiver Name : </strong> <?php echo $row['rname'];?> <br>
-                           <br>
-                           
-                           
-                            <strong>Receiver Email : </strong> <?php echo $row['email'];?><br>
-                            <br>
-                            <strong>Receiver Address : </strong>  <?php echo $row['raddress'];?>
-                            
-                            <br>
-                            <br>
-                            <strong>Expected Date of Delivery : </strong>  <?php echo $row['edd'];?>
-                        </div>
+            </div>
+        </div>
+
+        <!-- Destination Details -->
+        <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 20px;">
+            <div style="background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
+                <div style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 20px; font-weight: bold; font-size: 16px;">
+                    📍 Destination
+                </div>
+                <div style="padding: 25px;">
+                    <div style="margin-bottom: 18px;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Receiver Name</span>
+                        <span style="font-size: 16px; font-weight: bold; color: #333;"><?php echo htmlspecialchars($row['rname']); ?></span>
+                    </div>
+                    <div style="border-top: 1px solid #e0e0e0; padding-top: 18px; margin-bottom: 18px;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Email</span>
+                        <span style="font-size: 14px; color: #0066cc; word-break: break-all;"><?php echo htmlspecialchars($row['email']); ?></span>
+                    </div>
+                    <div style="border-top: 1px solid #e0e0e0; padding-top: 18px; margin-bottom: 18px;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Address</span>
+                        <p style="margin: 0; font-size: 14px; color: #333; line-height: 1.5;"><?php echo htmlspecialchars($row['raddress']); ?></p>
+                    </div>
+                    <div style="border-top: 1px solid #e0e0e0; padding-top: 18px;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Expected Delivery</span>
+                        <span style="font-size: 16px; font-weight: bold; color: #28a745;">📅 <?php echo htmlspecialchars($row['edd']); ?></span>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-4 col-lg-4 pull-right">
-                    <div class="panel panel-default height" style="background-color:#e8fafc">
-                        <div class="panel-heading" style="color:#fff; background-color:#140354">Origin</div>
-                        <div class="panel-body">
-                             <strong>Sender Name : </strong> <?php echo $row['sname'];?> <br>
-                           <br>
-                           
-                           
-                            <strong>Location : </strong> <?php echo $row['location'];?><br>
-                            <br>
-                            <strong>Sender Address : </strong>  <?php echo $row['saddress'];?>
-                            
-                            <br>
-                            <br>
-                            <strong>Shipment Date  : </strong>  <?php echo $row['shipdate'];?>
-                        </div>
+            </div>
+        </div>
+
+        <!-- Origin Details -->
+        <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 20px;">
+            <div style="background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
+                <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%); color: white; padding: 20px; font-weight: bold; font-size: 16px;">
+                    🚀 Origin
+                </div>
+                <div style="padding: 25px;">
+                    <div style="margin-bottom: 18px;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Sender Name</span>
+                        <span style="font-size: 16px; font-weight: bold; color: #333;"><?php echo htmlspecialchars($row['sname']); ?></span>
+                    </div>
+                    <div style="border-top: 1px solid #e0e0e0; padding-top: 18px; margin-bottom: 18px;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Location</span>
+                        <span style="font-size: 16px; font-weight: bold; color: #333;">📍 <?php echo htmlspecialchars($row['location']); ?></span>
+                    </div>
+                    <div style="border-top: 1px solid #e0e0e0; padding-top: 18px; margin-bottom: 18px;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Address</span>
+                        <p style="margin: 0; font-size: 14px; color: #333; line-height: 1.5;"><?php echo htmlspecialchars($row['saddress']); ?></p>
+                    </div>
+                    <div style="border-top: 1px solid #e0e0e0; padding-top: 18px;">
+                        <span style="color: #666; font-size: 13px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Shipped Date</span>
+                        <span style="font-size: 16px; font-weight: bold; color: #ff6b6b;">📅 <?php echo htmlspecialchars($row['shipdate']); ?></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    
-    
+
+
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="text-center"><strong>History summary</strong></h3>
+            <div style="background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; margin-top: 30px;">
+                <div style="background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 20px; font-weight: bold; font-size: 16px;">
+                    📜 Tracking History
                 </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-condensed">
-                            <thead>
-                                
-                                <tr>
-                                   
-                                    <td><strong>Date</strong></td>
-                                    <td class="text-center"><strong>Location</strong></td>
-                                    <td class="text-center"><strong>Remark</strong></td>
-                                    <td class="text-right"><strong>Status</strong></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                	<?php 
-						
-						$sql= "SELECT * FROM history WHERE pid = '$tid'";
-			  $result = db_query($sql);
-			  if(db_num_rows($result) > 0){
-				  while($row = db_fetch_assoc($result)){  
-				  
-				  
-				  
-				  ?>
-                                
-                                
-                                <tr>
-                                    
-                                 
-                            
-                                    <td><?php echo $row['pdate'];?></td>
-                                    <td class="text-center"><?php echo $row['location'];?></td>
-                                    <td class="text-center"><?php echo $row['remark'];?></td>
-                                    <td class="text-right"><?php echo $row['status'];?></td>
-                                    
-                                    
-
-        
-                                    
-                                </tr>
-                                <?php    
-          }
-          }
-?>
-                            </tbody>
-                        </table>
-                    </div>
+                <div style="padding: 20px; overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #e0e0e0; background-color: #f5f5f5;">
+                                <td style="padding: 15px; font-weight: 600; color: #333; text-transform: uppercase; font-size: 12px;">📅 Date</td>
+                                <td style="padding: 15px; font-weight: 600; color: #333; text-transform: uppercase; font-size: 12px;">📍 Location</td>
+                                <td style="padding: 15px; font-weight: 600; color: #333; text-transform: uppercase; font-size: 12px;">💬 Remark</td>
+                                <td style="padding: 15px; font-weight: 600; color: #333; text-transform: uppercase; font-size: 12px;">✓ Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            $sql= "SELECT * FROM history WHERE pid = '$tid'";
+                            $result = db_query($sql);
+                            if(db_num_rows($result) > 0){
+                                while($hist_row = db_fetch_assoc($result)){  
+                            ?>
+                            <tr style="border-bottom: 1px solid #e0e0e0; transition: background-color 0.2s;">
+                                <td style="padding: 15px; color: #333;"><?php echo htmlspecialchars($hist_row['pdate']); ?></td>
+                                <td style="padding: 15px; color: #333;"><?php echo htmlspecialchars($hist_row['location']); ?></td>
+                                <td style="padding: 15px; color: #666; font-size: 13px;"><?php echo htmlspecialchars($hist_row['remark']); ?></td>
+                                <td style="padding: 15px; color: #333;"><span style="background: #e3f2fd; color: #1976d2; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600;"><?php echo htmlspecialchars($hist_row['status']); ?></span></td>
+                            </tr>
+                            <?php    
+                            }
+                            } else {
+                                echo '<tr><td colspan="4" style="padding: 20px; text-align: center; color: #999;">No history records found</td></tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             
@@ -848,51 +894,45 @@ if (!$result) {
 			  $result = db_query($sql);
 			  if(db_num_rows($result) > 0){
 				$row = db_fetch_assoc($result); 
-              
-				$row['image'];
-				if(isset($row['image'])){
 
-					$image = $row['image'];
-				}
-				  
-			  }
-				  
-				  ?>
+            <!-- Package Image Section -->
+            <div style="background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; margin-top: 30px; text-align: center; padding: 40px 20px;">
+                <h3 style="margin-top: 0; font-size: 18px; font-weight: bold; color: #333;">📸 Package Image</h3>
+                <?php 
+                $sql = "SELECT * FROM track WHERE pid = '$tid'";
+                $result = db_query($sql);
+                if(db_num_rows($result) > 0){
+                    $track_row = db_fetch_assoc($result);
+                    if(isset($track_row['image']) && !empty($track_row['image'])):
+                ?>
+                <button type="button" class="btn" style="background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white; padding: 10px 30px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-bottom: 20px;" data-toggle="modal" data-target="#imageModal">
+                    🖼️ View Image
+                </button>
 
-            
-<div class="container" align="center">
-
-   <div align="center"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Package Image</button></div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><?php echo $row['pname'];?></h4>
-        </div>
-        <div class="modal-body">
-          <div align="center"><img src="../admin/pages/pimages/<?php echo $row['image']?>" width="300" height="300"></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-            
-            
-            
-            
-            
-            
-            
+                <!-- Image Modal -->
+                <div class="modal fade" id="imageModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">📦 <?php echo htmlspecialchars($track_row['pname']); ?></h4>
+                            </div>
+                            <div class="modal-body" style="text-align: center;">
+                                <img src="../admin/pages/pimages/<?php echo htmlspecialchars($track_row['image']); ?>" style="max-width: 100%; max-height: 600px; border-radius: 8px;">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php 
+                    else:
+                        echo '<p style="color: #999; font-size: 14px;">📭 No package image available</p>';
+                    endif;
+                }
+                ?>
+            </div>
            
         </div>
     </div>
