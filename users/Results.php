@@ -1246,6 +1246,11 @@ if (!$result) {
                 </article>
             </div>
         </section>
+    
+    <!-- jQuery must be loaded first -->
+    <script src="js/jquery-1.12.3.js"></script>
+    
+    <!-- Bootstrap (requires jQuery) -->
     <script src="js/bootstrap.min.js"></script>
 
     <!-- jquery easing 1.3 -->
