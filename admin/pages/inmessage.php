@@ -25,27 +25,27 @@ else{
 
 if(isset($_POST['set'])){
 
- $pname = isset($_POST['pname']) ? $_POST['pname'] : '';
-   $shipdate = isset($_POST['shipdate']) ? $_POST['shipdate'] : '';
-   $saddress = isset($_POST['saddress']) ? $_POST['saddress'] : '';
-   $sname = isset($_POST['sname']) ? $_POST['sname'] : '';
-   $raddress = isset($_POST['raddress']) ? $_POST['raddress'] : '';
-   $rname = isset($_POST['rname']) ? $_POST['rname'] : '';
-   $email = isset($_POST['email']) ? $_POST['email'] : '';
-   $status = isset($_POST['status']) ? $_POST['status'] : '';
-   $location = isset($_POST['location']) ? $_POST['location'] : '';
-   $pdate = isset($_POST['pdate']) ? $_POST['pdate'] : '';
+ $pname = isset($_POST['pname']) ? db_escape_string($_POST['pname']) : '';
+   $shipdate = isset($_POST['shipdate']) ? db_escape_string($_POST['shipdate']) : '';
+   $saddress = isset($_POST['saddress']) ? db_escape_string($_POST['saddress']) : '';
+   $sname = isset($_POST['sname']) ? db_escape_string($_POST['sname']) : '';
+   $raddress = isset($_POST['raddress']) ? db_escape_string($_POST['raddress']) : '';
+   $rname = isset($_POST['rname']) ? db_escape_string($_POST['rname']) : '';
+   $email = isset($_POST['email']) ? db_escape_string($_POST['email']) : '';
+   $status = isset($_POST['status']) ? db_escape_string($_POST['status']) : '';
+   $location = isset($_POST['location']) ? db_escape_string($_POST['location']) : '';
+   $pdate = isset($_POST['pdate']) ? db_escape_string($_POST['pdate']) : '';
    
-    $remark = isset($_POST['remark']) ? $_POST['remark'] : '';
+    $remark = isset($_POST['remark']) ? db_escape_string($_POST['remark']) : '';
    
    
-   $edd = isset($_POST['edd']) ? $_POST['edd'] : '';
-   $weight = isset($_POST['weight']) ? $_POST['weight'] : '';
-   $servicetype = isset($_POST['servicetype']) ? $_POST['servicetype'] : '';
-   $pdesc = isset($_POST['pdesc']) ? $_POST['pdesc'] : '';
-   $qty = isset($_POST['qty']) ? $_POST['qty'] : '';
+   $edd = isset($_POST['edd']) ? db_escape_string($_POST['edd']) : '';
+   $weight = isset($_POST['weight']) ? db_escape_string($_POST['weight']) : '';
+   $servicetype = isset($_POST['servicetype']) ? db_escape_string($_POST['servicetype']) : '';
+   $pdesc = isset($_POST['pdesc']) ? db_escape_string($_POST['pdesc']) : '';
+   $qty = isset($_POST['qty']) ? db_escape_string($_POST['qty']) : '';
    
-   $image = isset($_FILES['image']['name']) ? $_FILES['image']['name'] : '';
+   $image = isset($_FILES['image']['name']) ? db_escape_string($_FILES['image']['name']) : '';
 	$target = !empty($image) ? "pimages/".basename($image) : '';
    
    
@@ -225,17 +225,17 @@ if($mail->send()) {
 
 if(isset($_POST['uset'])){
 
-   $id = $_POST['id'];
- $pname = $_POST['pname'];
-   $shipdate = $_POST['shipdate'];
-   $saddress = $_POST['saddress'];
-   $sname = $_POST['sname'];
-   $raddress = $_POST['raddress'];
-   $rname = $_POST['rname'];
-   $email = $_POST['email'];
-   $status = $_POST['status'];
-   $location = $_POST['location'];
-   $pdate = $_POST['pdate'];
+   $id = isset($_POST['id']) ? db_escape_string($_POST['id']) : '';
+ $pname = isset($_POST['pname']) ? db_escape_string($_POST['pname']) : '';
+   $shipdate = isset($_POST['shipdate']) ? db_escape_string($_POST['shipdate']) : '';
+   $saddress = isset($_POST['saddress']) ? db_escape_string($_POST['saddress']) : '';
+   $sname = isset($_POST['sname']) ? db_escape_string($_POST['sname']) : '';
+   $raddress = isset($_POST['raddress']) ? db_escape_string($_POST['raddress']) : '';
+   $rname = isset($_POST['rname']) ? db_escape_string($_POST['rname']) : '';
+   $email = isset($_POST['email']) ? db_escape_string($_POST['email']) : '';
+   $status = isset($_POST['status']) ? db_escape_string($_POST['status']) : '';
+   $location = isset($_POST['location']) ? db_escape_string($_POST['location']) : '';
+   $pdate = isset($_POST['pdate']) ? db_escape_string($_POST['pdate']) : '';
    $pid = substr(str_shuffle("0JHGGSGJHS123456HHDHYDJH789"), 0, 10);
   
     
