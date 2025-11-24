@@ -1,5 +1,5 @@
-<!DOCTYPE php>
-<php lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <!-- Mirrored from trusttransport.themeebit.com/services.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Mar 2020 09:32:15 GMT -->
 <head>
@@ -273,9 +273,15 @@ function googleTranslateElementInit() {
 <?php
 include "../config/database.php";
 
-include "../config/database.php";
-
 $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
+
+// Debug logging
+error_log("DEBUG: Results.php - Track ID received: '$tid'");
+
+if (empty($tid)) {
+    error_log("ERROR: Results.php - No tracking ID provided!");
+    die("Error: No tracking ID provided. Please enter a valid tracking number.");
+}
 ?>
 
 
@@ -285,29 +291,22 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 					
 					 
 	
-<!doctype html>
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<?php
+// Database connection already made above, fetch the track data
+$sql = "SELECT * FROM track WHERE pid = '$tid'";
+$result = db_query($sql);
 
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-</head>
-<body>
-    
-    
-    
-    
-  <style>
-      
-  </style>  
+if (!$result) {
+	$db_error = db_error();
+	error_log("ERROR: Database query failed in tracking section. Error: $db_error");
+	echo "<div class='alert alert-danger'>Error retrieving package information.</div>";
+} elseif (db_num_rows($result) == 0) {
+	error_log("ERROR: No package found with PID: $tid in tracking section");
+	echo "<div class='alert alert-warning'>Package not found.</div>";
+}
+?>
+
+  
     
     
     
@@ -329,10 +328,19 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
        
                                 	<?php 
 			
-			$sql= "SELECT * FROM track WHERE pid = '$tid'";
-			  $result = db_query($sql);
-			  if(db_num_rows($result) > 0){
-				$row = db_fetch_assoc($result); 
+			$sql = "SELECT * FROM track WHERE pid = '$tid'";
+			error_log("DEBUG: Running query: $sql");
+			$result = db_query($sql);
+			
+			if (!$result) {
+				$db_error = db_error();
+				error_log("ERROR: Database query failed. Error: $db_error");
+				die("Database error: Unable to retrieve package information.");
+			}
+			
+			if(db_num_rows($result) > 0){
+				$row = db_fetch_assoc($result);
+				error_log("DEBUG: Package found - PID: " . $row['pid'] . ", Status: " . $row['status']);
               
 				$row['email'];
 				if(isset($row['location'])){
@@ -340,6 +348,9 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 					$location = $row['location'];
 				}
 				  
+			  } else {
+				error_log("ERROR: No package found with PID: $tid");
+				die("Error: Package with ID '$tid' not found in database. Please check the tracking number and try again.");
 			  }
 				  
 				  ?>
@@ -1102,7 +1113,7 @@ $tid = isset($_GET['track']) ? db_escape_string($_GET['track']) : '';
 </body>
 
 <!-- Mirrored from trusttransport.themeebit.com/services.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Mar 2020 09:32:17 GMT -->
-</php>
+</html>
 
 
 
