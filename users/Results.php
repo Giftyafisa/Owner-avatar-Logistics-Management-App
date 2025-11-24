@@ -351,46 +351,50 @@ if (!$result) {
 			  } else {
 				error_log("ERROR: No package found with PID: $tid");
 				die("Error: Package with ID '$tid' not found in database. Please check the tracking number and try again.");
-			  }
-				  
-				  ?>
+              }
+
+              $statusLabel = isset($row['status']) && $row['status'] !== '' ? ucfirst($row['status']) : 'Status unavailable';
+              $statusSlugSource = isset($row['status']) ? strtolower(trim($row['status'])) : 'unknown';
+              $statusSlug = preg_replace('/[^a-z0-9]+/', '-', $statusSlugSource);
+              $statusChipClass = 'status-chip--' . ($statusSlug ?: 'unknown');
+              $lastKnownLocation = !empty($row['location']) ? $row['location'] : 'Not available';
+              $shipDate = !empty($row['shipdate']) ? $row['shipdate'] : '—';
+              $expectedDelivery = !empty($row['edd']) ? $row['edd'] : '—';
+	  
+          ?>
                       
     
     
 	
-	<div class="container" style="margin-top: 30px;">
-	    <!-- Tracking Header -->
-	    <div class="row">
-	        <div class="col-xs-12">
-	            <div style="background: linear-gradient(135deg, #140354 0%, #1a0a4d 100%); color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px;">
-	                <h1 style="margin: 0; font-size: 28px; font-weight: bold;">📦 Package Tracking</h1>
-	                <h2 style="margin: 10px 0 0 0; font-size: 18px; font-weight: normal; opacity: 0.9;">ID: <span style="font-family: monospace; font-weight: bold; font-size: 20px;"><?php echo htmlspecialchars($row['pid']); ?></span></h2>
-	            </div>
-	        </div>
-	    </div>
-
-	    <!-- Quick Status Info Cards -->
-	    <div class="row" style="margin-bottom: 30px;">
-	        <div class="col-xs-12 col-sm-4" style="margin-bottom: 15px;">
-	            <div style="background: #f8f9fa; border-left: 4px solid #140354; padding: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-	                <p style="margin: 0; color: #666; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Current Status</p>
-	                <p style="margin: 10px 0 0 0; font-size: 18px; font-weight: bold; color: #140354;">📍 <?php echo ucfirst($row['status']); ?></p>
-	            </div>
-	        </div>
-	        <div class="col-xs-12 col-sm-4" style="margin-bottom: 15px;">
-	            <div style="background: #f8f9fa; border-left: 4px solid #28a745; padding: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-	                <p style="margin: 0; color: #666; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Shipped Date</p>
-	                <p style="margin: 10px 0 0 0; font-size: 18px; font-weight: bold; color: #28a745;">📅 <?php echo $row['shipdate']; ?></p>
-	            </div>
-	        </div>
-	        <div class="col-xs-12 col-sm-4" style="margin-bottom: 15px;">
-	            <div style="background: #f8f9fa; border-left: 4px solid #ff6b6b; padding: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-	                <p style="margin: 0; color: #666; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Expected Delivery</p>
-	                <p style="margin: 10px 0 0 0; font-size: 18px; font-weight: bold; color: #ff6b6b;">🎯 <?php echo $row['edd']; ?></p>
-	            </div>
-	        </div>
-	    </div>
-</div>
+    <div class="container tracking-container">
+        <section class="tracking-summary-panel">
+            <div class="tracking-summary-header">
+                <div>
+                    <p class="eyebrow-label">Shipment overview</p>
+                    <h1>Package Tracking</h1>
+                    <p class="tracking-id-text">Tracking ID <span><?php echo htmlspecialchars($row['pid']); ?></span></p>
+                </div>
+                <span class="status-chip <?php echo htmlspecialchars($statusChipClass); ?>"><?php echo htmlspecialchars($statusLabel); ?></span>
+            </div>
+            <div class="tracking-summary-grid">
+                <article class="summary-card">
+                    <p class="summary-label">Current Status</p>
+                    <p class="summary-value"><?php echo htmlspecialchars($statusLabel); ?></p>
+                    <span class="summary-meta">Last known location: <?php echo htmlspecialchars($lastKnownLocation); ?></span>
+                </article>
+                <article class="summary-card">
+                    <p class="summary-label">Shipped Date</p>
+                    <p class="summary-value"><?php echo htmlspecialchars($shipDate); ?></p>
+                    <span class="summary-meta">Recorded in system (local time)</span>
+                </article>
+                <article class="summary-card">
+                    <p class="summary-label">Expected Delivery</p>
+                    <p class="summary-value"><?php echo htmlspecialchars($expectedDelivery); ?></p>
+                    <span class="summary-meta">Subject to customs clearance</span>
+                </article>
+            </div>
+        </section>
+    </div>
 	
 	
 	
@@ -941,6 +945,136 @@ if (!$result) {
 </div>
 
 <style>
+.tracking-container {
+    margin-top: 30px;
+}
+
+.tracking-summary-panel {
+    background: #ffffff;
+    border: 1px solid #e4e7ec;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+.tracking-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.tracking-summary-header h1 {
+    margin: 8px 0 6px 0;
+    font-size: 26px;
+    color: #0b1f3a;
+    font-weight: 600;
+}
+
+.eyebrow-label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    color: #7a889f;
+    margin: 0;
+    font-weight: 600;
+}
+
+.tracking-id-text {
+    margin: 0;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.tracking-id-text span {
+    background: #101828;
+    color: #ffffff;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-family: "Courier New", monospace;
+    font-size: 15px;
+    margin-left: 6px;
+}
+
+.status-chip {
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    align-self: center;
+}
+
+.status-chip--in-transit {
+    background: #eef2ff;
+    color: #4338ca;
+    border-color: #c7d2fe;
+}
+
+.status-chip--delivered {
+    background: #ecfdf3;
+    color: #067647;
+    border-color: #abefc6;
+}
+
+.status-chip--process,
+.status-chip--processing {
+    background: #fef9c3;
+    color: #854d0e;
+    border-color: #fde68a;
+}
+
+.status-chip--confirm,
+.status-chip--confirmed {
+    background: #e0f2fe;
+    color: #075985;
+    border-color: #bae6fd;
+}
+
+.status-chip--unknown {
+    background: #f1f5f9;
+    color: #475467;
+    border-color: #e4e7ec;
+}
+
+.tracking-summary-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.summary-card {
+    border: 1px solid #e4e7ec;
+    border-radius: 12px;
+    padding: 18px 20px;
+    background: #f8fafc;
+}
+
+.summary-label {
+    margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #7a889f;
+    font-weight: 600;
+}
+
+.summary-value {
+    margin: 8px 0 6px 0;
+    font-size: 20px;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.summary-meta {
+    font-size: 12px;
+    color: #475467;
+}
+
 .height {
     min-height: 200px;
 }
@@ -1085,37 +1219,33 @@ if (!$result) {
             </div>
         </div>
 
-        <div class="tiny_footer">
-            <div class="container">
-                <div class="col-md-6 xs_fullwidth col-xs-6">
-                    <div class="footer_text_wrapper">
-                        <p class="footer_text">Copyright © Fright Cargo. All Rights Reserved.</p>
-                    </div>
+        <section class="tracking-summary-panel">
+            <div class="tracking-summary-header">
+                <div>
+                    <p class="eyebrow-label">Shipment overview</p>
+                    <h1>Package Tracking</h1>
+                    <p class="tracking-id-text">Tracking ID <span><?php echo htmlspecialchars($row['pid']); ?></span></p>
                 </div>
-                <div class="col-md-6 xs_fullwidth col-xs-6">
-                    <div class="footer_menu clearfix">
-                        <ul>
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="about_us.php">About Us</a></li>
-                            <li><a href="track_trace.php">Track & Trace</a></li>
-                            <li><a href="blog.php">News</a></li>
-                            <li><a href="contcat.php">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <span class="status-chip <?php echo htmlspecialchars($statusChipClass); ?>"><?php echo htmlspecialchars($statusLabel); ?></span>
             </div>
-        </div>
-    </footer>
-    <!--================================
-        END FOOTER
-    =================================-->
-
-    <!--//////////////////// JS GOES HERE ////////////////-->
-
-    <!-- jquery latest version -->
-    <script src="js/jquery-1.12.3.js"></script>
-
-    <!-- bootstrap js -->
+            <div class="tracking-summary-grid">
+                <article class="summary-card">
+                    <p class="summary-label">Current Status</p>
+                    <p class="summary-value"><?php echo htmlspecialchars($statusLabel); ?></p>
+                    <span class="summary-meta">Last known location: <?php echo htmlspecialchars($lastKnownLocation); ?></span>
+                </article>
+                <article class="summary-card">
+                    <p class="summary-label">Shipped Date</p>
+                    <p class="summary-value"><?php echo htmlspecialchars($shipDate); ?></p>
+                    <span class="summary-meta">Recorded in system (local time)</span>
+                </article>
+                <article class="summary-card">
+                    <p class="summary-label">Expected Delivery</p>
+                    <p class="summary-value"><?php echo htmlspecialchars($expectedDelivery); ?></p>
+                    <span class="summary-meta">Subject to customs clearance</span>
+                </article>
+            </div>
+        </section>
     <script src="js/bootstrap.min.js"></script>
 
     <!-- jquery easing 1.3 -->
