@@ -48,8 +48,19 @@ if(isset($_POST['set'])){
    $image = isset($_FILES['image']['name']) ? db_escape_string($_FILES['image']['name']) : '';
 	$target = !empty($image) ? "pimages/".basename($image) : '';
    
+   // Validate required fields
+   $required_fields = array('pname', 'email', 'sname', 'rname');
+   $validation_error = false;
+   foreach($required_fields as $field) {
+       if(empty($$field)) {
+           $validation_error = true;
+           break;
+       }
+   }
    
-   
+   if($validation_error) {
+       $msg = "Error: Please fill in all required fields (Package Name, Email, Sender Name, Receiver Name)";
+   } else {
    
  $pid = substr(str_shuffle("0JHGGSGJHS123456HHDHYDJH789"), 0, 10);
   
@@ -59,24 +70,33 @@ if(isset($_POST['set'])){
 
    $sql = "INSERT INTO track (pname,shipdate,saddress,sname,raddress,rname,email,status,location,pdate,pid,edd,weight,servicetype,pdesc,qty,image,remark) VALUES ('$pname','$shipdate','$saddress','$sname','$raddress','$rname','$email','$status','$location','$pdate','$pid','$edd','$weight','$servicetype','$pdesc','$qty','$image','$remark')";
    
-   if(db_query($sql)){
+   $query_result = db_query($sql);
+   if($query_result){
        
        if(!empty($image) && isset($_FILES['image']['tmp_name'])){
            if(!move_uploaded_file($_FILES['image']['tmp_name'], $target)){
                $msg = "Package added but image upload failed!";
+           } else {
+               $msg = "Package added successfully!";
            }
+       } else {
+           $msg = "Package added successfully (no image)!";
        }
       
 
 $sql1 = "INSERT INTO history (pname,shipdate,saddress,sname,raddress,rname,email,status,location,pdate,pid,edd,weight,servicetype,pdesc,qty,image,remark) VALUES ('$pname','$shipdate','$saddress','$sname','$raddress','$rname','$email','$status','$location','$pdate','$pid','$edd','$weight','$servicetype','$pdesc','$qty','$image','$remark')";
 
-db_query($sql1);
-
-
+$hist_result = db_query($sql1);
+if(!$hist_result) {
+    error_log("History insert failed for PID: $pid");
+}
 
 $sql2 = " INSERT INTO ocontrol (pid) VALUES ('$pid') ";
 
-db_query($sql2);
+$ctrl_result = db_query($sql2);
+if(!$ctrl_result) {
+    error_log("OControl insert failed for PID: $pid");
+}
 
  //send email
 
@@ -203,20 +223,20 @@ $mail->Body = '
 <div style="border-bottom: 1px solid #ccc;"><\/div> <p> Please do not reply to this email. Emails sent to this address will not be answered. 
 Copyright ©2019 '.$name.'. <\/p> <\/div> <\/div> <\/div>';
 
-if($mail->send()) {
-   
-   $msg = "New Package has been added successfuly!";
-}
-               
-           else{
-               $msg = "Email send error!";
-            }
+        if($mail->send()) {
+           $msg = "New Package has been added successfully with confirmation email!";
+        } else {
+           $msg = "Package added but email notification failed: " . $mail->ErrorInfo;
+           error_log("Email send error for PID: $pid - " . $mail->ErrorInfo);
+        }
+   } else {
+       $msg = "Failed to add package. Please check all fields are filled correctly.";
+       error_log("Track insert failed. SQL: $sql");
+   }
+   } // Close validation block
         
 
    
-}
-
-
 }
 
 
