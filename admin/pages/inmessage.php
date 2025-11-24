@@ -25,28 +25,28 @@ else{
 
 if(isset($_POST['set'])){
 
- $pname = $_POST['pname'];
-   $shipdate = $_POST['shipdate'];
-   $saddress = $_POST['saddress'];
-   $sname = $_POST['sname'];
-   $raddress = $_POST['raddress'];
-   $rname = $_POST['rname'];
-   $email = $_POST['email'];
-   $status = $_POST['status'];
-   $location = $_POST['location'];
-   $pdate = $_POST['pdate'];
+ $pname = isset($_POST['pname']) ? $_POST['pname'] : '';
+   $shipdate = isset($_POST['shipdate']) ? $_POST['shipdate'] : '';
+   $saddress = isset($_POST['saddress']) ? $_POST['saddress'] : '';
+   $sname = isset($_POST['sname']) ? $_POST['sname'] : '';
+   $raddress = isset($_POST['raddress']) ? $_POST['raddress'] : '';
+   $rname = isset($_POST['rname']) ? $_POST['rname'] : '';
+   $email = isset($_POST['email']) ? $_POST['email'] : '';
+   $status = isset($_POST['status']) ? $_POST['status'] : '';
+   $location = isset($_POST['location']) ? $_POST['location'] : '';
+   $pdate = isset($_POST['pdate']) ? $_POST['pdate'] : '';
    
-    $remark = $_POST['remark'];
+    $remark = isset($_POST['remark']) ? $_POST['remark'] : '';
    
    
-   $edd = $_POST['edd'];
-   $weight = $_POST['weight'];
-   $servicetype = $_POST['servicetype'];
-   $pdesc = $_POST['pdesc'];
-   $qty = $_POST['qty'];
+   $edd = isset($_POST['edd']) ? $_POST['edd'] : '';
+   $weight = isset($_POST['weight']) ? $_POST['weight'] : '';
+   $servicetype = isset($_POST['servicetype']) ? $_POST['servicetype'] : '';
+   $pdesc = isset($_POST['pdesc']) ? $_POST['pdesc'] : '';
+   $qty = isset($_POST['qty']) ? $_POST['qty'] : '';
    
-   $image = $_FILES['image']['name'];
-	$target = "pimages/".basename($image);
+   $image = isset($_FILES['image']['name']) ? $_FILES['image']['name'] : '';
+	$target = !empty($image) ? "pimages/".basename($image) : '';
    
    
    
@@ -61,7 +61,11 @@ if(isset($_POST['set'])){
    
    if(db_query($sql)){
        
-       move_uploaded_file($_FILES['image']['tmp_name'], $target);
+       if(!empty($image) && isset($_FILES['image']['tmp_name'])){
+           if(!move_uploaded_file($_FILES['image']['tmp_name'], $target)){
+               $msg = "Package added but image upload failed!";
+           }
+       }
       
 
 $sql1 = "INSERT INTO history (pname,shipdate,saddress,sname,raddress,rname,email,status,location,pdate,pid,edd,weight,servicetype,pdesc,qty,image,remark) VALUES ('$pname','$shipdate','$saddress','$sname','$raddress','$rname','$email','$status','$location','$pdate','$pid','$edd','$weight','$servicetype','$pdesc','$qty','$image','$remark')";
@@ -104,26 +108,25 @@ $mail->Body = '
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"><\/script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"><\/script>
 
 
 <div style="background: #f5f7f8;width: 100%;height: 100%; font-family: sans-serif; font-weight: 100;" class="be_container"> 
 
 <div style="background:#fff;max-width: 600px;margin: 0px auto;padding: 30px;"class="be_inner_containr"> <div class="be_header">
 
-<div class="be_logo" style="float: left;"> <img src="https://'.$bankurl.'/admin/pages/logo/'.$logo.'"> </div>
+<div class="be_logo" style="float: left;"> <img src="https://'.$bankurl.'/admin/pages/logo/'.$logo.'"> <\/div>
 
-<div class="be_user" style="float: right"> <p>Dear: '.$sname.' - Tracking ID: ' .$pid.'</p> </div> 
+<div class="be_user" style="float: right"> <p>Dear: '.$sname.' - Tracking ID: ' .$pid.'<\/p> <\/div> 
 
-<div style="clear: both;"></div> 
+<div style="clear: both;"><\/div> 
 
 <div class="be_bluebar" style="background: #1976d2; padding: 20px; color: #fff;margin-top: 10px;">
 
-<h1>Shipment Receipt</h1>
+<h1>Shipment Receipt<\/h1>
 
-</div> </div> 
+<\/div> <\/div> 
 
 <div class="be_body" style="padding: 20px;"> 
 <p style="line-height: 25px;"> 
@@ -137,69 +140,68 @@ $mail->Body = '
   <table class="table table-condensed" >
   
    
-        <th>Package Name</th>
-        <th>Shipment Date</th>
-        <th>Email</th>
-      </tr>
+        <tr>
+        <th>Package Name<\/th>
+        <th>Shipment Date<\/th>
+        <th>Email<\/th>
+      <\/tr>
 
       <tr>
-        <td>'.$pname.'</td>
-        <td>'.$shipdate .'</td>
-        <td>'.$email.'</td>
-      </tr>
-      <tr>
-      
+        <td>'.$pname.'<\/td>
+        <td>'.$shipdate .'<\/td>
+        <td>'.$email.'<\/td>
+      <\/tr>
       
        <tr>
-        <th>Sender Address</th>
-        <th>Sender Name</th>
-        <th>Date</th>
-      </tr>
-      
-        <td>'. $saddress.'</td>
-        <td>'.$sname.'</td>
-        <td>'.$pdate.'</td>
-      </tr>
-      <tr>
-      
-      
+        <th>Sender Address<\/th>
+        <th>Sender Name<\/th>
+        <th>Date<\/th>
+      <\/tr>
       
       <tr>
-             <th>Receiver Address</th>
-        <th>Receiver Name</th>
-        <th>Package Status</th>
-      </tr>
+        <td>'. $saddress.'<\/td>
+        <td>'.$sname.'<\/td>
+        <td>'.$pdate.'<\/td>
+      <\/tr>
       
-        <td>'. $raddress.'</td>
-        <td>'.$rname.'</td>
-        <td>'.$status.'</td>
-      </tr>
+      <tr>
+             <th>Receiver Address<\/th>
+        <th>Receiver Name<\/th>
+        <th>Package Status<\/th>
+      <\/tr>
+      
+      <tr>
+        <td>'. $raddress.'<\/td>
+        <td>'.$rname.'<\/td>
+        <td>'.$status.'<\/td>
+      <\/tr>
       
       
       
       <tr>
-             <th>Location</th>
-        <th>Tracking ID</th>
+             <th>Location<\/th>
+        <th>Tracking ID<\/th>
         
-      </tr>
+      <\/tr>
       
-        <td>'. $location.'</td>
-        <td>'.$pid.'</td>
+      <tr>
+        <td>'. $location.'<\/td>
+        <td>'.$pid.'<\/td>
         
-      </tr>
+      <\/tr>
       
       
-    </tbody>
-  </table>
-</div>
+    <\/tbody>
+  <\/table>
+<\/div>
 
-</p> <div style="margin-top: 25px;">
+<\/p> <div style="margin-top: 25px;">
 
- </div> </div> 
+ <\/div> <\/div> 
  
  <div class="be_footer">
-<div style="border-bottom: 1px solid #ccc;"></div> <p> Please do not reply to this email. Emails sent to this address will not be answered. 
-Copyright ©2019 '.$name.'. </p> </div> </div> </div>';
+<div style="border-bottom: 1px solid #ccc;"><\/div> <p> Please do not reply to this email. Emails sent to this address will not be answered. 
+Copyright ©2019 '.$name.'. <\/p> <\/div> <\/div> <\/div>';
 
 if($mail->send()) {
    
@@ -388,4 +390,5 @@ if(isset($_POST['uset'])){
   </div>
   </section>
 </div>
-
+<?php
+?>
