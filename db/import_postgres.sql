@@ -94,8 +94,21 @@ CREATE TABLE track (
 INSERT INTO track (id, pname, shipdate, saddress, sname, raddress, rname, email, status, location, pdate, pid, edd, weight, servicetype, pdesc, qty, image, remark) VALUES
 (28, 'samsung phone', '2020-06-14', 'abuja', 'Paul smith', 'Lagos Nigeria', 'Daniel Amos', 'ducanharry@gmail.com', 'deliver', 'Ikeja warehouse', '', '8SHHHGGD63', '2020-06-30', '24kg', 'Persel', 'In good condotion', '2', 'Computer Science.jpg', 'healthy delivery');
 
+-- Table structure for table ocontrol
+CREATE TABLE ocontrol (
+  id SERIAL PRIMARY KEY,
+  pid VARCHAR(100) NOT NULL,
+  confirm VARCHAR(100),
+  process VARCHAR(100),
+  quality VARCHAR(100),
+  dispatch VARCHAR(100),
+  deliver VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Reset sequences to match the data
 SELECT setval('admin_id_seq', (SELECT MAX(id) FROM admin));
 SELECT setval('history_id_seq', (SELECT MAX(id) FROM history));
 SELECT setval('settings_id_seq', (SELECT MAX(id) FROM settings));
 SELECT setval('track_id_seq', (SELECT MAX(id) FROM track));
+SELECT setval('ocontrol_id_seq', (SELECT MAX(id) FROM ocontrol));

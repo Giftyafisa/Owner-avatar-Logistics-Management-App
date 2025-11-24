@@ -88,14 +88,16 @@ $sql1 = "INSERT INTO history (pname,shipdate,saddress,sname,raddress,rname,email
 
 $hist_result = db_query($sql1);
 if(!$hist_result) {
-    error_log("History insert failed for PID: $pid");
+    $db_error = db_error();
+    error_log("History insert failed for PID: $pid. SQL: $sql1. DB Error: $db_error");
 }
 
 $sql2 = " INSERT INTO ocontrol (pid) VALUES ('$pid') ";
 
 $ctrl_result = db_query($sql2);
 if(!$ctrl_result) {
-    error_log("OControl insert failed for PID: $pid");
+    $db_error = db_error();
+    error_log("OControl insert failed for PID: $pid. SQL: $sql2. DB Error: $db_error");
 }
 
  //send email

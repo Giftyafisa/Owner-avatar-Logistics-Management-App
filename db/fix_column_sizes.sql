@@ -20,3 +20,15 @@ ALTER TABLE history ALTER COLUMN location TYPE VARCHAR(200);
 ALTER TABLE history ALTER COLUMN pdesc TYPE VARCHAR(300);
 ALTER TABLE history ALTER COLUMN image TYPE VARCHAR(300);
 ALTER TABLE history ALTER COLUMN remark TYPE VARCHAR(500);
+
+-- Create ocontrol table if it doesn't exist
+CREATE TABLE IF NOT EXISTS ocontrol (
+  id SERIAL PRIMARY KEY,
+  pid VARCHAR(100) NOT NULL,
+  confirm VARCHAR(100),
+  process VARCHAR(100),
+  quality VARCHAR(100),
+  dispatch VARCHAR(100),
+  deliver VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
