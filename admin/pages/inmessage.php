@@ -231,7 +231,8 @@ Copyright ©2019 '.$name.'. <\/p> <\/div> <\/div> <\/div>';
         }
    } else {
        $msg = "Failed to add package. Please check all fields are filled correctly.";
-       error_log("Track insert failed. SQL: $sql");
+       $db_error = db_error();
+       error_log("Track insert failed. SQL: $sql. DB Error: $db_error");
    }
    } // Close validation block
         

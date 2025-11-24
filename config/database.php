@@ -37,6 +37,11 @@ if ($db_type === 'pgsql') {
         return pg_escape_string($link, $string);
     }
     
+    function db_error() {
+        global $link;
+        return pg_last_error($link);
+    }
+    
 } else {
     // MySQL connection (original)
     define('DB_SERVER', $db_host);
@@ -67,6 +72,11 @@ if ($db_type === 'pgsql') {
     function db_escape_string($string) {
         global $link;
         return mysqli_real_escape_string($link, $string);
+    }
+    
+    function db_error() {
+        global $link;
+        return mysqli_error($link);
     }
 }
 ?>
