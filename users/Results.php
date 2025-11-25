@@ -924,7 +924,10 @@ if (!$result) {
                                 <h4 class="modal-title">📦 <?php echo htmlspecialchars($track_row['pname']); ?></h4>
                             </div>
                             <div class="modal-body" style="text-align: center;">
-                                <img src="/admin/pages/pimages/<?php echo htmlspecialchars($track_row['image']); ?>" style="max-width: 100%; max-height: 600px; border-radius: 8px;">
+                                <img src="get_image.php?img=<?php echo urlencode($track_row['image']); ?>" 
+                                     onerror="this.onerror=null; this.src='images/favicon.png'; this.alt='Image not available';" 
+                                     style="max-width: 100%; max-height: 600px; border-radius: 8px;" 
+                                     alt="Package image">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1270,9 +1273,6 @@ if (!$result) {
 
     <!-- waypoint js -->
     <script src="js/waypoints.min.js"></script>
-
-    <!-- google map js -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
 
     <!-- smoothscroll js -->
     <script src="js/jqury.smooth-scroll.min.js"></script>
