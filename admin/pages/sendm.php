@@ -79,11 +79,7 @@ if (db_query($sql)) {
 
 
 
-
-include "header.php";
-
-
-    ?>
+  ?>
 
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
