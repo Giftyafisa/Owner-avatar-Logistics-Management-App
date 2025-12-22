@@ -650,6 +650,7 @@ if (!$result) {
 	                    $statuses = array(
 	                        array('id' => 'confirmed', 'name' => 'Confirmed', 'icon' => '✓', 'color' => '#140354'),
 	                        array('id' => 'in transit', 'name' => 'In Transit', 'icon' => '📦', 'color' => '#4a90e2'),
+	                        array('id' => 'on hold', 'name' => 'On Hold', 'icon' => '⏸️', 'color' => '#ff6b6b'),
 	                        array('id' => 'processing', 'name' => 'Processing', 'icon' => '⚙️', 'color' => '#f5a623'),
 	                        array('id' => 'quality', 'name' => 'Quality Check', 'icon' => '🔍', 'color' => '#7ed321'),
 	                        array('id' => 'dispatched', 'name' => 'Dispatched', 'icon' => '🚚', 'color' => '#bd10e0'),
@@ -1015,6 +1016,12 @@ if (!$result) {
     background: #eef2ff;
     color: #4338ca;
     border-color: #c7d2fe;
+}
+
+.status-chip--on-hold {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
 }
 
 .status-chip--delivered {

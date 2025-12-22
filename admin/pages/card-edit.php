@@ -4,23 +4,20 @@ session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 
+include '../../config/database.php';
+include '../../config/config.php';
 
-if(isset($_SESSION['uid'])){
- 
- 
- $ids = isset($_GET['id']) ? db_escape_string($_GET['id']) : '';
-  include '../../config/database.php';
-  include '../../config/config.php';
-  include 'header.php';
+$msg = "";
+$ids = '';
 
-
-  $msg = "";
-
+if(!isset($_SESSION['uid'])){
+  header("location:../pages/login.php");
+  exit;
 }
-else{
 
-    header("location:../pages/login.php");
-}
+include 'header.php';
+
+$ids = isset($_GET['id']) ? db_escape_string($_GET['id']) : '';
 
 
 
@@ -31,6 +28,8 @@ else{
 
 
 if(isset($_POST['uset'])){
+
+    error_log("DEBUG: Update POST received for ID: " . $_POST['id'] . ", PID: " . $_POST['pid']);
 
    $ids = isset($_POST['id']) ? db_escape_string($_POST['id']) : '';
     $pid = isset($_POST['pid']) ? db_escape_string($_POST['pid']) : '';
@@ -44,25 +43,29 @@ if(isset($_POST['uset'])){
    $status = isset($_POST['status']) ? db_escape_string($_POST['status']) : '';
    $location = isset($_POST['location']) ? db_escape_string($_POST['location']) : '';
    $pdate = isset($_POST['pdate']) ? db_escape_string($_POST['pdate']) : '';
-   
+
   $remark = isset($_POST['remark']) ? db_escape_string($_POST['remark']) : '';
-   
-   
+
+
    $edd = isset($_POST['edd']) ? db_escape_string($_POST['edd']) : '';
    $weight = isset($_POST['weight']) ? db_escape_string($_POST['weight']) : '';
    $servicetype = isset($_POST['servicetype']) ? db_escape_string($_POST['servicetype']) : '';
    $pdesc = isset($_POST['pdesc']) ? db_escape_string($_POST['pdesc']) : '';
    $qty = isset($_POST['qty']) ? db_escape_string($_POST['qty']) : '';
-   
+
  $image = $_FILES['image']['name'];
 	$target = "pimages/".basename($image);
-   
-     
- 
+
+
+
     $sql = "UPDATE track SET  pname='$pname', shipdate='$shipdate', saddress='$saddress', sname='$sname', raddress='$raddress', rname='$rname', email='$email', status ='$status', location='$location',pdate='$pdate', pid='$pid',edd='$edd',weight='$weight',servicetype='$servicetype',pdesc='$pdesc',qty='$qty', remark='$remark',  image= '$image'  WHERE id = '$ids' ";
-    
+
+    error_log("DEBUG: Attempting to update track ID: $pid, Location: $location, SQL: $sql");
+
    if(db_query($sql)){
-      
+
+      error_log("DEBUG: Update successful for track ID: $pid");
+
   move_uploaded_file($_FILES['image']['tmp_name'], $target);
  //send email
 
@@ -202,10 +205,11 @@ if($mail->send()) {
         
 
    
-} 
+}
            else{
+               error_log("DEBUG: Update failed for track ID: $pid, Error: " . db_error());
                $msg = "Error updating package!";
-            }
+           }
  }
  
  
