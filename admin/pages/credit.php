@@ -1,27 +1,26 @@
 <?php
 
 session_start();
- if(isset($_SESSION['uid'])){
-  
-   include 'header.php';
-   include '../../config/database.php';
-   include '../../config/config.php';
 
-   if(isset($_GET['email']) &&  isset($_GET['account'])){
-   $email = $_GET['email'];
-   $acct = $_GET['account'];
+if(!isset($_SESSION['uid'])){
+    header("location:../pages/login.php");
+    exit;
+}
 
-   }else{
-    $email = $_GET['email'] = '0';
-    $acct = $_GET['account'] = '0';  
-   }
-   $msg = "";
- 
- }
- else{
- 
-     header("location:../pages/login.php");
- }
+include '../../config/database.php';
+include '../../config/config.php';
+include 'header.php';
+
+$msg = "";
+
+if(isset($_GET['email']) &&  isset($_GET['account'])){
+  $email = $_GET['email'];
+  $acct = $_GET['account'];
+
+} else {
+  $email = $_GET['email'] = '0';
+  $acct = $_GET['account'] = '0';
+}
  
 
 

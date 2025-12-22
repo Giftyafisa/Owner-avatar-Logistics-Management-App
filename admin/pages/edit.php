@@ -1,17 +1,16 @@
 <?php
 session_start();
-if(isset($_SESSION['uid'])){
- 
-  include 'header.php';
-  include '../../config/database.php';
-  include '../../config/config.php';
-  $msg = "";
 
-}
-else{
-
+if(!isset($_SESSION['uid'])){
     header("location:../pages/login.php");
+    exit;
 }
+
+include '../../config/database.php';
+include '../../config/config.php';
+include 'header.php';
+
+$msg = "";
 
 
 
