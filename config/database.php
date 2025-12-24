@@ -10,10 +10,18 @@ $db_type = getenv('DB_TYPE') ?: 'mysql'; // 'mysql' or 'pgsql'
 if ($db_type === 'pgsql') {
     // PostgreSQL connection
     $conn_string = "host=$db_host dbname=$db_name user=$db_user password=$db_pass";
-    $link = pg_connect($conn_string);
-    
-    if(!$link) {
-        die("ERROR: Could not connect to PostgreSQL. " . pg_last_error());
+    // Suppress raw PHP warnings and handle errors explicitly
+    $link = @pg_connect($conn_string);
+
+    if (!$link) {
+        $phpError = error_get_last();
+        $errMsg = isset($phpError['message']) ? $phpError['message'] : 'Unable to connect (no PHP error available).';
+        // Check basic DNS resolution for clearer diagnostics
+        $resolved = gethostbyname($db_host);
+        if ($resolved === $db_host) {
+            $errMsg = "DNS resolution failed for host '{$db_host}'. {$errMsg}";
+        }
+        die("ERROR: Could not connect to PostgreSQL at host '{$db_host}': " . trim($errMsg));
     }
     
     // Define helper functions for PostgreSQL
