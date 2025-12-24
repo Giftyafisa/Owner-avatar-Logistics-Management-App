@@ -185,7 +185,7 @@ overflow-x: auto;
                                       <td style="display:none"><input name="id" value="<?php echo $row['id'];?>"></td>
                                       
                                       
-                                            <td><?php echo $row['sname'] .' '. $row['lname'];?></td>
+                                            <td><?php echo $row['sname'];?></td>
                                             <td><?php echo $row['email'];?></td>
                                             <td><?php echo $row['pid'];?></td>
                                             <td><?php echo $row['shipdate'];?></td>

@@ -178,7 +178,7 @@ overflow-x: auto;
                                             
                                            <form class="form-horizontal" action="history-view.php?pid=<?php echo $pid;?>" method="POST" enctype="multipart/form-data" >
                                       
-                                            <td><?php echo $row['sname'] .' '. $row['lname'];?></td>
+                                            <td><?php echo $row['sname'];?></td>
                                             <td><?php echo $row['email'];?></td>
                                             <td><?php echo $row['pid'];?></td>
                                             <td><?php echo $row['shipdate'];?></td>

@@ -186,7 +186,7 @@ overflow-x: auto;
                                       <form action="card.php" method="POST">
                                           
                                          <td style="display:none"> <input type="text" name="pid" value="<?php echo $row['pid'];?>"></td>
-                                            <td><?php echo $row['sname'] .' '. $row['lname'];?></td>
+                                            <td><?php echo $row['sname'];?></td>
                                             <td><?php echo $row['email'];?></td>
                                             <td><?php echo $row['pid'];?></td>
                                             <td><?php echo $row['shipdate'];?></td>
