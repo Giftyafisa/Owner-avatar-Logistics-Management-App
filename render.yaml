@@ -7,3 +7,10 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     plan: free
+    envVars:
+      - key: DB_TYPE
+        value: mongodb
+      - key: DB_URI
+        value: mongodb+srv://mcdan:11221122Mc@mcdan.i7yeony.mongodb.net/?appName=mcdan
+      - key: DB_NAME
+        value: trusqerp_medidb

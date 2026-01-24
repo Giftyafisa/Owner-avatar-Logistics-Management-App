@@ -28,12 +28,17 @@ WORKDIR /var/www/html
 # Copy all files
 COPY . /var/www/html/
 
+# Create MongoDB data directory
+RUN mkdir -p /var/www/html/data/mongodb && \
+    chown -R www-data:www-data /var/www/html/data
+
 # Install admin dependencies
 RUN cd admin && npm ci --prefer-offline --no-audit || true
 
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html && \
-    chmod -R 755 /var/www/html
+    chmod -R 755 /var/www/html && \
+    chmod -R 777 /var/www/html/data
 
 # Expose port
 EXPOSE 80
