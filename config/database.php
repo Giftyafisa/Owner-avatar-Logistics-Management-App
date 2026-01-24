@@ -43,14 +43,25 @@ function db_query($sql) {
     }
     
     try {
-        // Parse SELECT query
-        if (preg_match('/^SELECT\s+\*\s+FROM\s+(\w+)(?:\s+WHERE\s+(.+))?$/i', trim($sql), $matches)) {
+        // Parse SELECT query (supports optional WHERE, ORDER BY, LIMIT)
+        if (preg_match('/^SELECT\s+\*\s+FROM\s+(\w+)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(\w+)\s*(ASC|DESC)?)?(?:\s+LIMIT\s+(\d+))?$/i', trim($sql), $matches)) {
             $collection = $matches[1];
-            $where = isset($matches[2]) ? $matches[2] : '';
-            
+            $where = isset($matches[2]) ? trim($matches[2]) : '';
+            $orderByField = isset($matches[3]) ? $matches[3] : '';
+            $orderByDir = isset($matches[4]) && $matches[4] ? strtoupper($matches[4]) : 'ASC';
+            $limit = isset($matches[5]) ? (int)$matches[5] : 0;
+
             $filter = parseWhereClause($where);
-            $cursor = $mongoDatabase->selectCollection($collection)->find($filter);
-            
+            $options = [];
+            if ($orderByField) {
+                $options['sort'] = [$orderByField => ($orderByDir === 'DESC' ? -1 : 1)];
+            }
+            if ($limit > 0) {
+                $options['limit'] = $limit;
+            }
+
+            $cursor = $mongoDatabase->selectCollection($collection)->find($filter, $options);
+
             return new MongoDBResult($cursor->toArray());
         }
         
