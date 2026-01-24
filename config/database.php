@@ -186,11 +186,35 @@ function parseWhereClause($where) {
         
         // Match: field = 'value' or field = "value" or field = value
         if (preg_match("/(\w+)\s*=\s*'([^']*)'/", $condition, $m)) {
-            $filter[$m[1]] = $m[2];
+            $fieldName = $m[1];
+            $fieldValue = $m[2];
+            
+            // If searching by 'id', convert to MongoDB _id ObjectId
+            if ($fieldName === 'id') {
+                try {
+                    $filter['_id'] = new MongoDB\BSON\ObjectId($fieldValue);
+                } catch (Exception $e) {
+                    // If invalid ObjectId format, search by id field directly
+                    $filter['id'] = $fieldValue;
+                }
+            } else {
+                $filter[$fieldName] = $fieldValue;
+            }
         } elseif (preg_match('/(\w+)\s*=\s*"([^"]*)"/', $condition, $m)) {
-            $filter[$m[1]] = $m[2];
+            $fieldName = $m[1];
+            $fieldValue = $m[2];
+            
+            if ($fieldName === 'id') {
+                try {
+                    $filter['_id'] = new MongoDB\BSON\ObjectId($fieldValue);
+                } catch (Exception $e) {
+                    $filter['id'] = $fieldValue;
+                }
+            } else {
+                $filter[$fieldName] = $fieldValue;
+            }
         } elseif (preg_match('/(\w+)\s*=\s*(\d+)/', $condition, $m)) {
-            $filter[$m[1]] = $m[2];
+            $filter[$m[1]] = (int)$m[2];
         } elseif (preg_match('/(\w+)\s*=\s*(\S+)/', $condition, $m)) {
             $filter[$m[1]] = trim($m[2], "'\"");
         }

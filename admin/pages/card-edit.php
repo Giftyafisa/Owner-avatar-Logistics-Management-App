@@ -251,7 +251,7 @@ if($mail->send()) {
 
  <?php 
  
- $sql= "SELECT * FROM track WHERE id = $ids";
+ $sql= "SELECT * FROM track WHERE id = '$ids'";
 			  $result = db_query($sql);
 			  if(db_num_rows($result) > 0){
 				  while($row = db_fetch_assoc($result)){  
