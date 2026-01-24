@@ -28,9 +28,12 @@ WORKDIR /var/www/html
 # Copy all files
 COPY . /var/www/html/
 
-# Create MongoDB data directory
+# Create MongoDB data directory and initialize data
 RUN mkdir -p /var/www/html/data/mongodb && \
     chown -R www-data:www-data /var/www/html/data
+
+# Initialize MongoDB collections with admin user and settings
+RUN php /var/www/html/setup-mongodb.php > /dev/null 2>&1 || true
 
 # Install admin dependencies
 RUN cd admin && npm ci --prefer-offline --no-audit || true
@@ -38,10 +41,11 @@ RUN cd admin && npm ci --prefer-offline --no-audit || true
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html && \
-    chmod -R 777 /var/www/html/data
+    chmod -R 777 /var/www/html/data && \
+    chmod +x /var/www/html/docker-entrypoint.sh
 
 # Expose port
 EXPOSE 80
 
-# Start Apache
-CMD ["apache2-foreground"]
+# Start with entrypoint script
+CMD ["/var/www/html/docker-entrypoint.sh"]

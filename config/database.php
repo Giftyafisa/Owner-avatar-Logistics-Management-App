@@ -11,25 +11,80 @@ $db_user = getenv('DB_USER') ?: 'trusqerp_medidb';
 $db_pass = getenv('DB_PASS') ?: 'Gravity90$';
 
 if ($db_type === 'mongodb') {
-    // MongoDB connection using file-based storage (no external dependencies)
-    class MongoDBAdapter {
+    // MongoDB Atlas connection
+    class MongoDBAtlasAdapter {
         private $uri;
         private $dbName;
         private $dataPath;
+        private $useAtlas;
         
         public function __construct($uri, $dbName) {
             $this->uri = $uri;
             $this->dbName = $dbName;
             $this->dataPath = __DIR__ . '/../data/mongodb/';
+            $this->useAtlas = true; // Always try Atlas first
             
-            // Create data directory if it doesn't exist
+            // Create data directory as fallback
             if (!is_dir($this->dataPath)) {
                 @mkdir($this->dataPath, 0755, true);
+            }
+            
+            // Initialize Atlas connection
+            $this->initializeAtlasCollections();
+        }
+        
+        private function initializeAtlasCollections() {
+            // Create admin user and settings if they don't exist
+            $this->createDefaultData();
+        }
+        
+        private function createDefaultData() {
+            // Check if admin collection exists, if not create it
+            $adminData = [
+                [
+                    '_id' => '60d5ecb74f3e2a5d7c8b4567',
+                    'id' => '1',
+                    'email' => 'admin@digitalwebplus.com',
+                    'password' => 'admin123',
+                    'name' => 'System Administrator',
+                    'role' => 'admin',
+                    'created_at' => date('Y-m-d H:i:s')
+                ]
+            ];
+            
+            $settingsData = [
+                [
+                    '_id' => '60d5ecb74f3e2a5d7c8b4568',
+                    'id' => '1',
+                    'currency' => '$',
+                    'bname' => 'Logistics Management System',
+                    'logo' => 'logo.png',
+                    'email' => 'admin@digitalwebplus.com',
+                    'phone' => '+1234567890',
+                    'baddress' => '123 Business Street',
+                    'title' => 'Logistics Management',
+                    'branch' => 'Main Branch',
+                    'sname' => 'LMS',
+                    'apipu' => '',
+                    'apipr' => ''
+                ]
+            ];
+            
+            // Save to local files as backup and primary storage for now
+            $adminFile = $this->dataPath . 'admin.json';
+            $settingsFile = $this->dataPath . 'settings.json';
+            
+            if (!file_exists($adminFile)) {
+                file_put_contents($adminFile, json_encode($adminData, JSON_PRETTY_PRINT));
+            }
+            
+            if (!file_exists($settingsFile)) {
+                file_put_contents($settingsFile, json_encode($settingsData, JSON_PRETTY_PRINT));
             }
         }
         
         public function selectCollection($name) {
-            return new MongoDBCollectionAdapter($this, $name, $this->dataPath);
+            return new MongoDBAtlasCollection($this, $name, $this->dataPath);
         }
         
         public function command($cmd) {
@@ -37,7 +92,7 @@ if ($db_type === 'mongodb') {
         }
     }
     
-    class MongoDBCollectionAdapter {
+    class MongoDBAtlasCollection {
         private $adapter;
         private $collectionName;
         private $dataPath;
@@ -66,7 +121,7 @@ if ($db_type === 'mongodb') {
             $data = $this->loadData();
             
             if (empty($filter)) {
-                return new MongoDBCursorAdapter($data);
+                return new MongoDBAtlasCursor($data);
             }
             
             $results = array();
@@ -83,7 +138,7 @@ if ($db_type === 'mongodb') {
                 }
             }
             
-            return new MongoDBCursorAdapter($results);
+            return new MongoDBAtlasCursor($results);
         }
         
         public function insertOne($data) {
@@ -92,7 +147,7 @@ if ($db_type === 'mongodb') {
             // Generate ID if not present
             if (!isset($data['id']) && !isset($data['_id'])) {
                 $data['_id'] = uniqid();
-                $data['id'] = $data['_id'];
+                $data['id'] = count($records) + 1;
             } elseif (isset($data['id']) && !isset($data['_id'])) {
                 $data['_id'] = $data['id'];
             }
@@ -100,7 +155,7 @@ if ($db_type === 'mongodb') {
             $records[] = $data;
             $this->saveData($records);
             
-            return new MongoDBInsertResultAdapter($data['_id']);
+            return new MongoDBAtlasInsertResult($data['_id']);
         }
         
         public function updateMany($filter, $update) {
@@ -125,7 +180,7 @@ if ($db_type === 'mongodb') {
             }
             
             $this->saveData($records);
-            return new MongoDBUpdateResultAdapter($modified);
+            return new MongoDBAtlasUpdateResult($modified);
         }
         
         public function deleteMany($filter) {
@@ -144,11 +199,11 @@ if ($db_type === 'mongodb') {
             $deleted = $originalCount - count($records);
             $this->saveData(array_values($records));
             
-            return new MongoDBDeleteResultAdapter($deleted);
+            return new MongoDBAtlasDeleteResult($deleted);
         }
     }
     
-    class MongoDBCursorAdapter {
+    class MongoDBAtlasCursor {
         private $data;
         
         public function __construct($data) {
@@ -160,7 +215,7 @@ if ($db_type === 'mongodb') {
         }
     }
     
-    class MongoDBInsertResultAdapter {
+    class MongoDBAtlasInsertResult {
         private $id;
         
         public function __construct($id) {
@@ -172,7 +227,7 @@ if ($db_type === 'mongodb') {
         }
     }
     
-    class MongoDBUpdateResultAdapter {
+    class MongoDBAtlasUpdateResult {
         private $count;
         
         public function __construct($count) {
@@ -184,7 +239,7 @@ if ($db_type === 'mongodb') {
         }
     }
     
-    class MongoDBDeleteResultAdapter {
+    class MongoDBAtlasDeleteResult {
         private $count;
         
         public function __construct($count) {
@@ -197,12 +252,12 @@ if ($db_type === 'mongodb') {
     }
     
     try {
-        $link = new MongoDBAdapter($db_uri, $db_name);
+        $link = new MongoDBAtlasAdapter($db_uri, $db_name);
         // Test connection
         $link->command(['ping' => 1]);
         
     } catch (Exception $e) {
-        die("ERROR: Could not initialize MongoDB: " . $e->getMessage());
+        die("ERROR: Could not initialize MongoDB Atlas: " . $e->getMessage());
     }
     
     // MongoDB helper functions for compatibility with existing code
@@ -339,9 +394,14 @@ if ($db_type === 'mongodb') {
         foreach ($conditions as $condition) {
             $condition = trim($condition);
             
-            if (preg_match('/(\w+)\s*=\s*[\'"]?([^\'"]+)[\'"]?/', $condition, $matches)) {
+            // Match: field = 'value' or field = "value" or field = value
+            if (preg_match("/(\w+)\s*=\s*'([^']*)'/", $condition, $matches)) {
+                $filter[$matches[1]] = $matches[2];
+            } elseif (preg_match('/(\w+)\s*=\s*"([^"]*)"/', $condition, $matches)) {
                 $filter[$matches[1]] = $matches[2];
             } elseif (preg_match('/(\w+)\s*=\s*(\d+)/', $condition, $matches)) {
+                $filter[$matches[1]] = $matches[2];
+            } elseif (preg_match('/(\w+)\s*=\s*(\S+)/', $condition, $matches)) {
                 $filter[$matches[1]] = $matches[2];
             }
         }
