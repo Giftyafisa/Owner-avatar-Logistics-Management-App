@@ -292,8 +292,6 @@ if(isset($_POST['uset'])){
        $msg = "Settings Not Updated!";
      }
  }
- }
-}
 ?>
 
 
