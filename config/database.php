@@ -20,8 +20,8 @@ try {
     $mongoClient = new MongoDB\Client($mongodb_uri);
     $mongoDatabase = $mongoClient->selectDatabase($mongodb_database);
     
-    // Test connection
-    $mongoDatabase->command(['ping' => 1]);
+    // Test connection (using admin database for ping)
+    $mongoClient->selectDatabase('admin')->command(['ping' => 1]);
     
 } catch (Exception $e) {
     error_log("MongoDB Connection Error: " . $e->getMessage());
