@@ -292,17 +292,9 @@ if(isset($_POST['uset'])){
        $msg = "Settings Not Updated!";
      }
  }
- 
- 
-
-
-
-
-
-
-
-
-    ?>
+ }
+}
+?>
 
 
 
@@ -429,5 +421,8 @@ if(isset($_POST['uset'])){
   </div>
   </section>
 </div>
-<?php
-?>
+
+<?php include 'footer.php'; ?>
+
+</body>
+</html>
