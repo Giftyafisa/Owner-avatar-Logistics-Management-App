@@ -70,8 +70,12 @@ if(isset($_POST['set'])){
 
    $sql = "INSERT INTO track (pname,shipdate,saddress,sname,raddress,rname,email,status,location,pdate,pid,edd,weight,servicetype,pdesc,qty,image,remark) VALUES ('$pname','$shipdate','$saddress','$sname','$raddress','$rname','$email','$status','$location','$pdate','$pid','$edd','$weight','$servicetype','$pdesc','$qty','$image','$remark')";
    
+   // Debug log the SQL for troubleshooting
+   error_log("Attempting to insert package. SQL: " . $sql);
+   
    $query_result = db_query($sql);
    if($query_result){
+       error_log("Package insert successful for PID: $pid");
        
        if(!empty($image) && isset($_FILES['image']['tmp_name'])){
            // Check for file upload errors

@@ -75,7 +75,9 @@ $collections = array(
     'cards' => array(),
     'statements' => array(),
     'messages' => array(),
-    'transactions' => array()
+    'transactions' => array(),
+    'track' => array(),
+    'ocontrol' => array()
 );
 
 foreach ($collections as $name => $data) {
