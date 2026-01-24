@@ -3,7 +3,7 @@
     "description": "Logistics Management Application with MongoDB support",
     "require": {
         "php": ">=8.2",
-        "mongodb/mongodb": "^1.15"
+        "mongodb/mongodb": "^2.0"
     },
     "autoload": {
         "psr-4": {
