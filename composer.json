@@ -2,7 +2,8 @@
     "name": "digitalwebplus/logistics-management-app",
     "description": "Logistics Management Application with MongoDB support",
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "mongodb/mongodb": "^1.15"
     },
     "autoload": {
         "psr-4": {

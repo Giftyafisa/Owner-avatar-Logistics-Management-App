@@ -35,9 +35,8 @@ WORKDIR /var/www/html
 # Copy all files first
 COPY . /var/www/html/
 
-# Install Composer dependencies
-RUN composer require mongodb/mongodb --no-interaction --optimize-autoloader && \
-    composer dump-autoload --optimize
+# Install Composer dependencies from composer.json
+RUN composer install --no-interaction --optimize-autoloader --no-dev
 
 # Install admin dependencies
 RUN cd admin && npm ci --prefer-offline --no-audit || true

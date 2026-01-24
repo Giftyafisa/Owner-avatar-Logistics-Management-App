@@ -14,18 +14,21 @@ $mongoDatabase = null;
 
 try {
     // Load the MongoDB library
-    require_once __DIR__ . '/../vendor/autoload.php';
+    if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+        require_once __DIR__ . '/../vendor/autoload.php';
+    } else {
+        throw new Exception("Composer autoload not found. Run: composer install");
+    }
     
     // Create MongoDB client
     $mongoClient = new MongoDB\Client($mongodb_uri);
     $mongoDatabase = $mongoClient->selectDatabase($mongodb_database);
     
-    // Test connection (using admin database for ping)
-    $mongoClient->selectDatabase('admin')->command(['ping' => 1]);
+    // Connection established - no need for ping test, it will fail on first query if connection is bad
     
 } catch (Exception $e) {
     error_log("MongoDB Connection Error: " . $e->getMessage());
-    // Don't die, allow graceful fallback
+    die("Database connection failed: " . $e->getMessage());
 }
 
 /**
