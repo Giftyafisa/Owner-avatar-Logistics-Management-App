@@ -1,5 +1,5 @@
 {
-    "name": "logistics-management-app",
+    "name": "digitalwebplus/logistics-management-app",
     "description": "Logistics Management Application with MongoDB support",
     "require": {
         "php": ">=7.0"
