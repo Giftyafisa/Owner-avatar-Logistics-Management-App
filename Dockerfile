@@ -32,14 +32,12 @@ RUN a2enmod rewrite
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files first for caching
-COPY composer.json /var/www/html/
-
-# Install MongoDB PHP library via Composer
-RUN composer require mongodb/mongodb --no-interaction --no-scripts || true
-
-# Copy all files
+# Copy all files first
 COPY . /var/www/html/
+
+# Install Composer dependencies
+RUN composer require mongodb/mongodb --no-interaction --optimize-autoloader && \
+    composer dump-autoload --optimize
 
 # Install admin dependencies
 RUN cd admin && npm ci --prefer-offline --no-audit || true
